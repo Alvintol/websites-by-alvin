@@ -4,10 +4,15 @@
   "private": true,
   "type": "module",
   "description": "Alvin Tolentino's small-business website service.",
-  "engines": { "node": ">=20" },
+  "engines": {
+    "node": ">=20"
+  },
   "scripts": {
     "build": "node scripts/build.mjs",
     "check": "node scripts/check.mjs",
     "preview": "node scripts/preview.mjs"
+  },
+  "devDependencies": {
+    "wrangler": "^4.130.0"
   }
 }
