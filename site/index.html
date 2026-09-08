@@ -1,526 +1,86 @@
 <!doctype html>
 <html lang="en-CA">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>
-      Websites by Alvin | Simple web design that won’t break the bank
-    </title>
-    <meta
-      name="description"
-      content="Simple web design that won’t break the bank. Alvin Tolentino builds clear, practical websites for small businesses that are short on time or unsure where to start."
-    />
-    <meta name="robots" content="index, follow" />
-    <meta name="theme-color" content="#1714e8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="stylesheet" href="/styles.css" />
-    <script src="/app.js" defer></script>
-  </head>
-  <body>
-    <a class="skip-link" href="#main">Skip to content</a>
-    <div class="scroll-progress" aria-hidden="true">
-      <span data-progress></span>
-    </div>
-    <div class="cursor-orbit" aria-hidden="true" data-cursor>
-      <span>+</span>
-    </div>
-    <header class="site-header" data-header>
-      <a class="wordmark" href="#top" aria-label="Websites by Alvin home"
-        ><span class="wordmark-mark">A<span>/</span></span
-        ><span>Websites by Alvin</span></a
-      >
-      <button
-        class="menu-button"
-        type="button"
-        data-menu-button
-        aria-expanded="false"
-        aria-controls="site-nav"
-      >
-        <span>Menu</span><i aria-hidden="true"></i>
-      </button>
-      <nav
-        class="site-nav"
-        id="site-nav"
-        data-menu
-        aria-label="Main navigation"
-      >
-        <a href="#why">Why a website</a><a href="#offer">What I build</a
-        ><a href="#about">About me</a>
-        <a
-          class="nav-cta magnetic"
-          href="mailto:imallbeans+creates@gmail.com?subject=Small%20business%20website%20inquiry&amp;body=Hi%20Alvin%2C%0A%0AI%27m%20interested%20in%20a%20website%20for%20my%20business.%0A%0ABusiness%20name%3A%0AWhat%20we%20do%3A%0ALocation%3A%0ACurrent%20website%20(if%20any)%3A%0A%0AThanks%21"
-          >Let’s talk <span aria-hidden="true">↗</span></a
-        >
-      </nav>
-    </header>
-    <main id="main">
-      <section class="hero" id="top" aria-labelledby="hero-title" data-hero>
-        <div class="hero-scene">
-          <div class="hero-depth" aria-hidden="true">
-            <img
-              class="hero-skyline"
-              src="/assets/hero-calgary-skyline.webp"
-              width="1273"
-              height="534"
-              alt=""
-              fetchpriority="high"
-            />
-            <div class="hero-skyline-haze"></div>
-            <img
-              class="hero-bridge hero-bridge-left"
-              src="/assets/hero-bridge-left.png"
-              width="668"
-              height="374"
-              alt=""
-              fetchpriority="high"
-            />
-            <img
-              class="hero-bridge hero-bridge-right"
-              src="/assets/hero-bridge-right.png"
-              width="668"
-              height="374"
-              alt=""
-              fetchpriority="high"
-            />
-            <img
-              class="hero-bridge-floor"
-              src="/assets/hero-bridge-floor.png"
-              width="669"
-              height="373"
-              alt=""
-              fetchpriority="high"
-            />
-            <div class="hero-depth-wash"></div>
-          </div>
-          <div class="hero-content" data-hero-content>
-            <div class="hero-kicker reveal">
-              <span class="availability-dot" aria-hidden="true"></span>Based in Calgary · Working with small businesses everywhere
-            </div>
-            <h1
-              id="hero-title"
-              class="hero-title"
-              aria-label="Simple web design that won’t break the bank."
-            >
-              <span class="line"><span>SIMPLE WEB</span></span
-              ><span class="line line-outline"
-                ><span>DESIGN THAT WON’T</span></span
-              ><span class="line line-indent"
-                ><span>BREAK THE BANK.</span
-                ><i class="spark" aria-hidden="true">✦</i></span
-              >
-            </h1>
-            <div class="hero-bottom reveal">
-              <p>
-                I’m Alvin. I build clear, simple websites for small businesses
-                that are short on time, working with a practical budget, or
-                unsure where to begin.
-              </p>
-              <a
-                class="round-link magnetic"
-                href="#why"
-                aria-label="See who I build websites for"
-                ><span>See why</span><b aria-hidden="true">↓</b></a
-              >
-            </div>
-          </div>
-          <div class="hero-sticker sticker-one" data-float aria-hidden="true">
-            SIMPLE<br />BY DESIGN
-          </div>
-          <div class="hero-sticker sticker-two" data-float aria-hidden="true">
-            LOCAL<br />+ HUMAN
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Websites by Alvin | Simple web design that won’t break the bank</title>
+  <meta name="description" content="Simple web design that won’t break the bank. Alvin Tolentino builds clear, practical websites for small businesses that are short on time or unsure where to start.">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#1714e8">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="stylesheet" href="/styles.css">
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="scroll-progress" aria-hidden="true"><span data-progress></span></div>
+  <div class="cursor-orbit" aria-hidden="true" data-cursor><span>+</span></div>
+  <header class="site-header" data-header>
+    <a class="wordmark" href="#top" aria-label="Websites by Alvin home"><span class="wordmark-mark">A<span>/</span></span><span>Websites by Alvin</span></a>
+    <button class="menu-button" type="button" data-menu-button aria-expanded="false" aria-controls="site-nav"><span>Menu</span><i aria-hidden="true"></i></button>
+    <nav class="site-nav" id="site-nav" data-menu aria-label="Main navigation">
+      <a href="#why">Why a website</a><a href="#offer">What I build</a><a href="#about">About me</a>
+      <a class="nav-cta magnetic" href="mailto:imallbeans+creates@gmail.com?subject=Small%20business%20website%20inquiry&amp;body=Hi%20Alvin%2C%0A%0AI%27m%20interested%20in%20a%20website%20for%20my%20business.%0A%0ABusiness%20name%3A%0AWhat%20we%20do%3A%0ALocation%3A%0ACurrent%20website%20(if%20any)%3A%0A%0AThanks%21">Let’s talk <span aria-hidden="true">↗</span></a>
+    </nav>
+  </header>
+  <main id="main">
+    <section class="hero" id="top" aria-labelledby="hero-title" data-hero>
+      <div class="hero-scene">
+        <div class="hero-depth" aria-hidden="true">
+          <img class="hero-skyline" src="/assets/hero-calgary-skyline.webp" width="1273" height="534" alt="" fetchpriority="high">
+          <div class="hero-skyline-haze"></div>
+          <img class="hero-bridge hero-bridge-left" src="/assets/hero-bridge-left.png" width="668" height="374" alt="" fetchpriority="high">
+          <img class="hero-bridge hero-bridge-right" src="/assets/hero-bridge-right.png" width="668" height="374" alt="" fetchpriority="high">
+          <img class="hero-bridge-floor" src="/assets/hero-bridge-floor.png" width="669" height="373" alt="" fetchpriority="high">
+          <div class="hero-depth-wash"></div>
+        </div>
+        <div class="hero-content" data-hero-content>
+          <div class="hero-kicker reveal"><span class="availability-dot" aria-hidden="true"></span>Calgary, Alberta · Working with small businesses</div>
+          <h1 id="hero-title" class="hero-title" aria-label="Simple web design that won’t break the bank.">
+            <span class="line"><span>SIMPLE WEB</span></span><span class="line line-outline"><span>DESIGN THAT WON’T</span></span><span class="line line-indent"><span>BREAK THE BANK.</span><i class="spark" aria-hidden="true">✦</i></span>
+          </h1>
+          <div class="hero-bottom reveal">
+            <p>I’m Alvin. I build clear, simple websites for small businesses that are short on time, working with a practical budget, or unsure where to begin.</p>
+            <a class="round-link magnetic" href="#why" aria-label="See who I build websites for"><span>See why</span><b aria-hidden="true">↓</b></a>
           </div>
         </div>
-      </section>
-      <div class="marquee" aria-hidden="true">
-        <div class="marquee-track">
-          <span>CLEAR MESSAGE</span><i>✦</i><span>MOBILE FRIENDLY</span><i>✦</i
-          ><span>QUICK TO MANAGE</span><i>✦</i><span>BUILT AROUND YOU</span
-          ><i>✦</i><span>CLEAR MESSAGE</span><i>✦</i><span>MOBILE FRIENDLY</span
-          ><i>✦</i><span>QUICK TO MANAGE</span><i>✦</i
-          ><span>BUILT AROUND YOU</span><i>✦</i>
-        </div>
+        <div class="hero-sticker sticker-one" data-float aria-hidden="true">SIMPLE<br>BY DESIGN</div><div class="hero-sticker sticker-two" data-float aria-hidden="true">LOCAL<br>+ HUMAN</div>
       </div>
-      <section class="section why-section" id="why" aria-labelledby="why-title">
-        <div class="section-number">01</div>
-        <div class="section-intro reveal">
-          <p class="eyebrow">WHO THIS IS FOR</p>
-          <h2 id="why-title">
-            A website shouldn’t become another job on your list.
-          </h2>
-          <p>
-            You already have a business to run. I help with the part that keeps
-            getting pushed to “later.”
-          </p>
-        </div>
-        <div class="problem-grid">
-          <article class="problem-card tilt reveal" data-tilt>
-            <span class="card-index">A</span
-            ><span class="scribble" aria-hidden="true">↗</span>
-            <h3>No time</h3>
-            <p>
-              You’re busy serving customers, answering calls, and doing the
-              actual work. Building a website keeps falling behind.
-            </p>
-            <div class="card-answer">I keep the process focused.</div>
-          </article>
-          <article
-            class="problem-card problem-card-yellow tilt reveal"
-            data-tilt
-          >
-            <span class="card-index">B</span
-            ><span class="scribble" aria-hidden="true">$</span>
-            <h3>No agency budget</h3>
-            <p>
-              You need something professional, but a large custom build doesn’t
-              make sense for where your business is today.
-            </p>
-            <div class="card-answer">We start with what matters.</div>
-          </article>
-          <article class="problem-card problem-card-blue tilt reveal" data-tilt>
-            <span class="card-index">C</span
-            ><span class="scribble" aria-hidden="true">?</span>
-            <h3>No clear starting point</h3>
-            <p>
-              Domains, hosting, layouts, search results—there are too many
-              decisions before you’ve written a single word.
-            </p>
-            <div class="card-answer">I make the choices understandable.</div>
-          </article>
-        </div>
-      </section>
-      <section class="demo-section" id="offer" aria-labelledby="offer-title">
-        <div class="demo-copy reveal">
-          <div class="section-number section-number-light">02</div>
-          <p class="eyebrow">CHOOSE A STARTING POINT</p>
-          <h2 id="offer-title">Five businesses.<br />Five directions.</h2>
-          <p>
-            These are different website structures—not one layout wearing
-            different colours. Pick a direction and we’ll shape the content,
-            branding, and details around your business.
-          </p>
-          <div
-            class="business-picker"
-            role="group"
-            aria-label="Choose a starter website style"
-          >
-            <button
-              class="picker-button is-active"
-              type="button"
-              data-example="yard"
-              aria-pressed="true"
-            >
-              <span>01</span>Yard care</button
-            ><button
-              class="picker-button"
-              type="button"
-              data-example="cleaner"
-              aria-pressed="false"
-            >
-              <span>02</span>Cleaning</button
-            ><button
-              class="picker-button"
-              type="button"
-              data-example="detailer"
-              aria-pressed="false"
-            >
-              <span>03</span>Mobile detailing</button
-            ><button
-              class="picker-button"
-              type="button"
-              data-example="contractor"
-              aria-pressed="false"
-            >
-              <span>04</span>Contracting</button
-            ><button
-              class="picker-button"
-              type="button"
-              data-example="groomer"
-              aria-pressed="false"
-            >
-              <span>05</span>Pet grooming
-            </button>
-          </div>
-        </div>
-        <div class="browser-stage reveal" data-browser-stage>
-          <div class="carousel-meta">
-            <span data-demo-style>Editorial split</span>
-            <div class="carousel-controls">
-              <button
-                type="button"
-                data-demo-prev
-                aria-label="Previous starter website"
-              >
-                ←</button
-              ><span data-demo-count aria-live="polite">01 / 05</span
-              ><button
-                type="button"
-                data-demo-next
-                aria-label="Next starter website"
-              >
-                →
-              </button>
-            </div>
-          </div>
-          <div class="browser-frame">
-            <div class="browser-bar">
-              <span></span><span></span><span></span>
-              <div data-demo-url>northlineyard.ca</div>
-            </div>
-            <div
-              class="browser-site template-yard"
-              data-demo-site
-              aria-live="polite"
-              aria-label="Yard care starter website preview"
-            ></div>
-          </div>
-          <span class="drag-note" aria-hidden="true">PICK A STYLE ↖</span>
-        </div>
-        <div class="deliverables">
-          <article class="reveal">
-            <span>01</span>
-            <h3>Your message</h3>
-            <p>
-              Clear writing that helps visitors understand your business
-              quickly.
-            </p>
-          </article>
-          <article class="reveal">
-            <span>02</span>
-            <h3>Your look</h3>
-            <p>
-              Colours, imagery, and details shaped around the business you’ve
-              built.
-            </p>
-          </article>
-          <article class="reveal">
-            <span>03</span>
-            <h3>Your launch</h3>
-            <p>
-              Mobile-ready pages, domain connection, hosting, and a practical
-              handoff.
-            </p>
-          </article>
-          <article class="reveal">
-            <span>04</span>
-            <h3>Your updates</h3>
-            <p>
-              A clear way to request small changes when your services or hours
-              change.
-            </p>
-          </article>
-        </div>
-      </section>
-      <section class="about-section" id="about" aria-labelledby="about-title">
-        <div class="about-sticky">
-          <div class="section-number">03</div>
-          <p class="eyebrow">THE PERSON BUILDING IT</p>
-          <h2 id="about-title">
-            Hi, I’m Alvin.<br /><span>I build useful things.</span>
-          </h2>
-          <figure class="about-portrait reveal">
-            <div class="about-portrait-frame">
-              <img
-                src="/assets/about-alvin.webp"
-                width="451"
-                height="550"
-                alt="Alvin Tolentino smiling"
-                loading="lazy"
-                decoding="async"
-              /><span aria-hidden="true">A/</span>
-            </div>
-            <figcaption>Alvin Tolentino · Calgary, AB</figcaption>
-          </figure>
-          <a
-            class="text-link magnetic"
-            href="https://www.linkedin.com/in/alvintol/"
-            target="_blank"
-            rel="noopener noreferrer"
-            >The deeper dive on LinkedIn <span aria-hidden="true">↗</span></a
-          >
-        </div>
-        <div class="about-story">
-          <div class="story-block reveal">
-            <span>01 / SELF-TAUGHT</span>
-            <p>
-              I’m a full-stack developer in Calgary. I learned by building
-              useful things, solving real problems, and staying curious when the
-              answer wasn’t obvious.
-            </p>
-          </div>
-          <div class="story-block reveal">
-            <span>02 / BUILDER</span>
-            <p>
-              I’ve built automation for my own work and developed a multi-tenant
-              operations platform as the sole developer—from the interface to
-              the database underneath it.
-            </p>
-          </div>
-          <div class="story-block reveal">
-            <span>03 / COLLABORATOR</span>
-            <p>
-              I listen carefully, communicate clearly, and pay attention to the
-              small details that make a website feel trustworthy and easy to
-              use.
-            </p>
-          </div>
-          <div class="story-block story-block-accent reveal">
-            <span>WHAT THAT MEANS FOR YOU</span>
-            <p>
-              You work directly with the person designing and building your
-              site. I’ll explain the choices, keep the scope clear, and make
-              sure the result feels like your business.
-            </p>
-          </div>
-        </div>
-      </section>
-      <section
-        class="process-section"
-        id="process"
-        aria-labelledby="process-title"
-      >
-        <div class="process-heading reveal">
-          <div class="section-number">04</div>
-          <p class="eyebrow">HOW WE GET THERE</p>
-          <h2 id="process-title">Four steps.<br />No mystery.</h2>
-        </div>
-        <ol class="process-list">
-          <li class="reveal">
-            <span>1</span>
-            <div>
-              <h3>Tell me about the business</h3>
-              <p>
-                We talk about your customers, services, service area, and what
-                the website needs to accomplish.
-              </p>
-            </div>
-            <b aria-hidden="true">LISTEN</b>
-          </li>
-          <li class="reveal">
-            <span>2</span>
-            <div>
-              <h3>Agree on the essentials</h3>
-              <p>
-                I turn that conversation into a clear page plan and scope before
-                the build begins.
-              </p>
-            </div>
-            <b aria-hidden="true">SHAPE</b>
-          </li>
-          <li class="reveal">
-            <span>3</span>
-            <div>
-              <h3>Review something real</h3>
-              <p>
-                You see the working website, give focused feedback, and know
-                exactly what is changing.
-              </p>
-            </div>
-            <b aria-hidden="true">BUILD</b>
-          </li>
-          <li class="reveal">
-            <span>4</span>
-            <div>
-              <h3>Put it online</h3>
-              <p>
-                I connect the domain, launch the site, and make the next update
-                easy to request.
-              </p>
-            </div>
-            <b aria-hidden="true">LAUNCH</b>
-          </li>
-        </ol>
-      </section>
-      <section class="faq-section" aria-labelledby="faq-title">
-        <div class="faq-heading reveal">
-          <p class="eyebrow">A FEW FAIR QUESTIONS</p>
-          <h2 id="faq-title">Before you reach out.</h2>
-        </div>
-        <div class="faq-list">
-          <details class="reveal">
-            <summary>
-              What kind of website do you build?<span aria-hidden="true"
-                >+</span
-              >
-            </summary>
-            <p>
-              I’m starting with focused websites for local and service-based
-              small businesses: a clear homepage, services, business
-              information, and an easy way for customers to get in touch.
-            </p>
-          </details>
-          <details class="reveal">
-            <summary>
-              How much will it cost?<span aria-hidden="true">+</span>
-            </summary>
-            <p>
-              Every business needs something slightly different. I keep the
-              first scope small and practical, then provide a clear quote before
-              work begins. Extra features are discussed separately.
-            </p>
-          </details>
-          <details class="reveal">
-            <summary>
-              Do I need to know anything technical?<span aria-hidden="true"
-                >+</span
-              >
-            </summary>
-            <p>
-              No. I’ll explain domains, hosting, and updates in plain language
-              and handle the technical setup we agree on.
-            </p>
-          </details>
-          <details class="reveal">
-            <summary>
-              What do I need to provide?<span aria-hidden="true">+</span>
-            </summary>
-            <p>
-              Your business details, services, service area, contact
-              information, and any logo or photos you already have. I’ll help
-              organize the information into a useful page.
-            </p>
-          </details>
-        </div>
-      </section>
-      <section
-        class="contact-section"
-        id="contact"
-        aria-labelledby="contact-title"
-      >
-        <p class="contact-orbit orbit-one" aria-hidden="true">
-          SMALL BUSINESS · SIMPLE WEBSITE ·
-        </p>
-        <p class="contact-orbit orbit-two" aria-hidden="true">
-          CALGARY · BUILT WITH CARE ·
-        </p>
-        <div class="contact-content reveal">
-          <p class="eyebrow">HAVE A BUSINESS IN MIND?</p>
-          <h2 id="contact-title">Let’s give it<br />a place online.</h2>
-          <p>
-            Tell me what you do, where you work, and what has kept you from
-            building a website so far.
-          </p>
-          <a
-            class="contact-button magnetic"
-            href="mailto:imallbeans+creates@gmail.com?subject=Small%20business%20website%20inquiry&amp;body=Hi%20Alvin%2C%0A%0AI%27m%20interested%20in%20a%20website%20for%20my%20business.%0A%0ABusiness%20name%3A%0AWhat%20we%20do%3A%0ALocation%3A%0ACurrent%20website%20(if%20any)%3A%0A%0AThanks%21"
-            ><span>Email me about your website</span
-            ><b aria-hidden="true">↗</b></a
-          ><a class="contact-email" href="mailto:imallbeans+creates@gmail.com"
-            >imallbeans+creates@gmail.com</a
-          >
-        </div>
-      </section>
-    </main>
-    <footer class="site-footer">
-      <a class="wordmark" href="#top"
-        ><span class="wordmark-mark">A<span>/</span></span
-        ><span>Websites by Alvin</span></a
-      >
-      <p>Simple web design that won’t break the bank.</p>
-      <div>
-        <span>Calgary, Alberta</span
-        ><a href="mailto:imallbeans+creates@gmail.com">Email Alvin ↗</a
-        ><a href="#top">Back to top ↑</a>
+    </section>
+    <div class="marquee" aria-hidden="true"><div class="marquee-track">
+      <span>CLEAR MESSAGE</span><i>✦</i><span>MOBILE FRIENDLY</span><i>✦</i><span>QUICK TO MANAGE</span><i>✦</i><span>BUILT AROUND YOU</span><i>✦</i><span>CLEAR MESSAGE</span><i>✦</i><span>MOBILE FRIENDLY</span><i>✦</i><span>QUICK TO MANAGE</span><i>✦</i><span>BUILT AROUND YOU</span><i>✦</i>
+    </div></div>
+    <section class="section why-section" id="why" aria-labelledby="why-title">
+      <div class="section-number">01</div>
+      <div class="section-intro reveal"><p class="eyebrow">WHO THIS IS FOR</p><h2 id="why-title">A website shouldn’t become another job on your list.</h2><p>You already have a business to run. I help with the part that keeps getting pushed to “later.”</p></div>
+      <div class="problem-grid">
+        <article class="problem-card tilt reveal" data-tilt><span class="card-index">A</span><span class="scribble" aria-hidden="true">↗</span><h3>No time</h3><p>You’re busy serving customers, answering calls, and doing the actual work. Building a website keeps falling behind.</p><div class="card-answer">I keep the process focused.</div></article>
+        <article class="problem-card problem-card-yellow tilt reveal" data-tilt><span class="card-index">B</span><span class="scribble" aria-hidden="true">$</span><h3>No agency budget</h3><p>You need something professional, but a large custom build doesn’t make sense for where your business is today.</p><div class="card-answer">We start with what matters.</div></article>
+        <article class="problem-card problem-card-blue tilt reveal" data-tilt><span class="card-index">C</span><span class="scribble" aria-hidden="true">?</span><h3>No clear starting point</h3><p>Domains, hosting, layouts, search results—there are too many decisions before you’ve written a single word.</p><div class="card-answer">I make the choices understandable.</div></article>
       </div>
-    </footer>
-  </body>
+    </section>
+    <section class="demo-section" id="offer" aria-labelledby="offer-title">
+      <div class="demo-copy reveal"><div class="section-number section-number-light">02</div><p class="eyebrow">CHOOSE A STARTING POINT</p><h2 id="offer-title">Five businesses.<br>Five directions.</h2><p>These are different website structures—not one layout wearing different colours. Pick a direction and we’ll shape the content, branding, and details around your business.</p>
+        <div class="business-picker" role="group" aria-label="Choose a starter website style"><button class="picker-button is-active" type="button" data-example="yard" aria-pressed="true"><span>01</span>Yard care</button><button class="picker-button" type="button" data-example="cleaner" aria-pressed="false"><span>02</span>Cleaning</button><button class="picker-button" type="button" data-example="detailer" aria-pressed="false"><span>03</span>Mobile detailing</button><button class="picker-button" type="button" data-example="contractor" aria-pressed="false"><span>04</span>Contracting</button><button class="picker-button" type="button" data-example="groomer" aria-pressed="false"><span>05</span>Pet grooming</button></div>
+      </div>
+      <div class="browser-stage reveal" data-browser-stage>
+        <div class="carousel-meta"><span data-demo-style>Editorial split</span><div class="carousel-controls"><button type="button" data-demo-prev aria-label="Previous starter website">←</button><span data-demo-count aria-live="polite">01 / 05</span><button type="button" data-demo-next aria-label="Next starter website">→</button></div></div>
+        <div class="browser-frame"><div class="browser-bar"><span></span><span></span><span></span><div data-demo-url>northlineyard.ca</div></div><div class="browser-site template-yard" data-demo-site aria-live="polite" aria-label="Yard care starter website preview"></div></div>
+        <span class="drag-note" aria-hidden="true">PICK A STYLE ↖</span>
+      </div>
+      <div class="deliverables"><article class="reveal"><span>01</span><h3>Your message</h3><p>Clear writing that helps visitors understand your business quickly.</p></article><article class="reveal"><span>02</span><h3>Your look</h3><p>Colours, imagery, and details shaped around the business you’ve built.</p></article><article class="reveal"><span>03</span><h3>Your launch</h3><p>Mobile-ready pages, domain connection, hosting, and a practical handoff.</p></article><article class="reveal"><span>04</span><h3>Your updates</h3><p>A clear way to request small changes when your services or hours change.</p></article></div>
+    </section>
+    <section class="about-section" id="about" aria-labelledby="about-title">
+      <div class="about-sticky"><p class="eyebrow">THE PERSON BUILDING IT</p><div class="about-intro"><img class="about-portrait reveal" src="/assets/about-alvin.webp" width="451" height="550" alt="Alvin Tolentino smiling" loading="lazy" decoding="async"><h2 id="about-title">Hi, I’m Alvin.<br><span>I build useful things.</span></h2></div><a class="text-link magnetic" href="https://www.linkedin.com/in/alvintol/" target="_blank" rel="noopener noreferrer">The deeper dive on LinkedIn <span aria-hidden="true">↗</span></a></div>
+      <div class="about-story"><div class="story-block reveal"><span>01 / SELF-TAUGHT</span><p>I’m a full-stack developer in Calgary. I learned by building useful things, solving real problems, and staying curious when the answer wasn’t obvious.</p></div><div class="story-block reveal"><span>02 / BUILDER</span><p>I’ve built automation for my own work and developed a multi-tenant operations platform as the sole developer—from the interface to the database underneath it.</p></div><div class="story-block reveal"><span>03 / COLLABORATOR</span><p>I listen carefully, communicate clearly, and pay attention to the small details that make a website feel trustworthy and easy to use.</p></div><div class="story-block story-block-accent reveal"><span>WHAT THAT MEANS FOR YOU</span><p>You work directly with the person designing and building your site. I’ll explain the choices, keep the scope clear, and make sure the result feels like your business.</p></div></div>
+    </section>
+    <section class="process-section" id="process" aria-labelledby="process-title">
+      <div class="process-heading reveal"><div class="section-number">04</div><p class="eyebrow">HOW WE GET THERE</p><h2 id="process-title">Four steps.<br>No mystery.</h2></div>
+      <ol class="process-list"><li class="reveal"><span>1</span><div><h3>Tell me about the business</h3><p>We talk about your customers, services, service area, and what the website needs to accomplish.</p></div><b aria-hidden="true">LISTEN</b></li><li class="reveal"><span>2</span><div><h3>Agree on the essentials</h3><p>I turn that conversation into a clear page plan and scope before the build begins.</p></div><b aria-hidden="true">SHAPE</b></li><li class="reveal"><span>3</span><div><h3>Review something real</h3><p>You see the working website, give focused feedback, and know exactly what is changing.</p></div><b aria-hidden="true">BUILD</b></li><li class="reveal"><span>4</span><div><h3>Put it online</h3><p>I connect the domain, launch the site, and make the next update easy to request.</p></div><b aria-hidden="true">LAUNCH</b></li></ol>
+    </section>
+    <section class="faq-section" aria-labelledby="faq-title"><div class="faq-heading reveal"><p class="eyebrow">A FEW FAIR QUESTIONS</p><h2 id="faq-title">Before you reach out.</h2></div><div class="faq-list"><details class="reveal"><summary>What kind of website do you build?<span aria-hidden="true">+</span></summary><p>I’m starting with focused websites for local and service-based small businesses: a clear homepage, services, business information, and an easy way for customers to get in touch.</p></details><details class="reveal"><summary>How much will it cost?<span aria-hidden="true">+</span></summary><p>Every business needs something slightly different. I keep the first scope small and practical, then provide a clear quote before work begins. Extra features are discussed separately.</p></details><details class="reveal"><summary>Do I need to know anything technical?<span aria-hidden="true">+</span></summary><p>No. I’ll explain domains, hosting, and updates in plain language and handle the technical setup we agree on.</p></details><details class="reveal"><summary>What do I need to provide?<span aria-hidden="true">+</span></summary><p>Your business details, services, service area, contact information, and any logo or photos you already have. I’ll help organize the information into a useful page.</p></details></div></section>
+    <section class="contact-section" id="contact" aria-labelledby="contact-title"><p class="contact-orbit orbit-one" aria-hidden="true">SMALL BUSINESS · SIMPLE WEBSITE ·</p><p class="contact-orbit orbit-two" aria-hidden="true">CALGARY · BUILT WITH CARE ·</p><div class="contact-content reveal"><p class="eyebrow">HAVE A BUSINESS IN MIND?</p><h2 id="contact-title">Let’s give it<br>a place online.</h2><p>Tell me what you do, where you work, and what has kept you from building a website so far.</p><a class="contact-button magnetic" href="mailto:imallbeans+creates@gmail.com?subject=Small%20business%20website%20inquiry&amp;body=Hi%20Alvin%2C%0A%0AI%27m%20interested%20in%20a%20website%20for%20my%20business.%0A%0ABusiness%20name%3A%0AWhat%20we%20do%3A%0ALocation%3A%0ACurrent%20website%20(if%20any)%3A%0A%0AThanks%21"><span>Email me about your website</span><b aria-hidden="true">↗</b></a><a class="contact-email" href="mailto:imallbeans+creates@gmail.com">imallbeans+creates@gmail.com</a></div></section>
+  </main>
+  <footer class="site-footer"><a class="wordmark" href="#top"><span class="wordmark-mark">A<span>/</span></span><span>Websites by Alvin</span></a><p>Simple web design that won’t break the bank.</p><div><span>Calgary, Alberta</span><a href="mailto:imallbeans+creates@gmail.com">Email Alvin ↗</a><a href="#top">Back to top ↑</a></div></footer>
+</body>
 </html>
