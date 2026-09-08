@@ -20,8 +20,6 @@ const updateHeroDepth = () => {
   hero.style.setProperty('--hero-copy-opacity', String(Math.max(1 - amount * 1.38, 0)));
   hero.style.setProperty('--hero-copy-shift', `${amount * -8}vh`);
   hero.style.setProperty('--hero-copy-blur', `${amount * 4}px`);
-  hero.style.setProperty('--hero-sticker-opacity', String(Math.max(1 - amount * 1.8, 0)));
-  hero.style.setProperty('--hero-sticker-shift', `${amount * 16}vw`);
 };
 
 const updateScroll = () => {

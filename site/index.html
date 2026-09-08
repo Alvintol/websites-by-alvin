@@ -12,7 +12,7 @@
     />
     <meta name="robots" content="noindex, nofollow" />
     <meta name="theme-color" content="#315766" />
-    <link rel="icon" type="image/svg+xml" href="/favison.png" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
     <link rel="stylesheet" href="/styles.css" />
     <script src="/app.js" defer></script>
   </head>
@@ -26,8 +26,13 @@
     </div>
     <header class="site-header" data-header>
       <a class="wordmark" href="#top" aria-label="Created by Alvin home"
-        ><img class="logo" src="/assets/logo.png" alt="Created by Alvin" /></a
-      >
+        ><img
+          class="brand-logo"
+          src="/assets/created-by-alvin-logo.png"
+          width="636"
+          height="551"
+          alt="Created by Alvin"
+      /></a>
       <button
         class="menu-button"
         type="button"
@@ -190,35 +195,35 @@
             aria-label="Choose a starter website style"
           >
             <button
+              class="picker-button is-active"
+              type="button"
+              data-example="yard"
+              aria-pressed="true"
+            >
+              Editorial</button
+            ><button
               class="picker-button"
               type="button"
               data-example="cleaner"
               aria-pressed="false"
             >
-              Editorial</button
+              Electric showcase</button
             ><button
               class="picker-button"
               type="button"
               data-example="detailer"
               aria-pressed="false"
             >
-              Electric Showcase</button
+              Neon modular</button
             ><button
               class="picker-button"
               type="button"
               data-example="contractor"
               aria-pressed="false"
             >
-              Neon Modular</button
-            ><button
-              class="picker-button"
-              type="button"
-              data-example="groomer"
-              aria-pressed="false"
-            >
               Atmospheric
             </button>
-            <span class="drag-note" aria-hidden="true">And More</span>
+            <span class="drag-note" aria-hidden="true">AND MORE</span>
           </div>
         </div>
         <div class="browser-stage reveal" data-browser-stage>
@@ -303,10 +308,10 @@
               loading="lazy"
               decoding="async"
             />
-            <h2 id="about-title">
-              Hi, I’m Alvin.<br /><span>I build useful things.</span>
-            </h2>
           </div>
+          <h2 id="about-title">
+            Hi, I’m Alvin.<br /><span>I build useful things.</span>
+          </h2>
           <a
             class="text-link magnetic"
             href="https://www.linkedin.com/in/alvintol/"
@@ -317,7 +322,7 @@
         </div>
         <div class="about-story">
           <div class="story-block reveal">
-            <span>SELF-TAUGHT</span>
+            <span>01 / SELF-TAUGHT</span>
             <p>
               I’m a full-stack developer in Calgary. I learned by building
               useful things, solving real problems, and staying curious when the
@@ -325,7 +330,7 @@
             </p>
           </div>
           <div class="story-block reveal">
-            <span>BUILDER</span>
+            <span>02 / BUILDER</span>
             <p>
               I’ve built automation for my own work and developed a multi-tenant
               operations platform as the sole developer—from the interface to
@@ -333,7 +338,7 @@
             </p>
           </div>
           <div class="story-block reveal">
-            <span>COLLABORATOR</span>
+            <span>03 / COLLABORATOR</span>
             <p>
               I listen carefully, communicate clearly, and pay attention to the
               small details that make a website feel trustworthy and easy to
@@ -479,8 +484,10 @@
           <a
             class="contact-button magnetic"
             href="mailto:imallbeans+creates@gmail.com?subject=Small%20business%20website%20inquiry&amp;body=Hi%20Alvin%2C%0A%0AI%27m%20interested%20in%20a%20website%20for%20my%20business.%0A%0ABusiness%20name%3A%0AWhat%20we%20do%3A%0ALocation%3A%0ACurrent%20website%20(if%20any)%3A%0A%0AThanks%21"
-            ><span>Email me about your idea!</span
+            ><span>Email me about your website</span
             ><b aria-hidden="true">↗</b></a
+          ><a class="contact-email" href="mailto:imallbeans+creates@gmail.com"
+            >imallbeans+creates@gmail.com</a
           >
         </div>
       </section>

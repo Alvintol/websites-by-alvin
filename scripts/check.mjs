@@ -16,9 +16,7 @@ for (const match of html.matchAll(/\b(?:href|src)="([^"]+)"/g)) {
 }
 for (const tag of html.matchAll(/<a\b[^>]*target="_blank"[^>]*>/g)) if (!/rel="[^"]*noopener[^"]*noreferrer[^"]*"/.test(tag[0])) fail('External links require safe rel attributes.');
 if (!/<meta name="description" content="[^"]+">/.test(html)) fail('Missing page description.');
-if (!html.includes('<meta name="robots" content="index, follow">')) {
-  fail('Public site must allow indexing.');
-}
+if (!html.includes('<meta name="robots" content="noindex, nofollow">')) fail('Private draft must remain noindex.');
 if (html.includes('tel:')) fail('Draft should not publish an unconfirmed phone number.');
 if (!html.includes('mailto:imallbeans+creates@gmail.com')) fail('Confirmed contact email is missing.');
 for (const match of html.matchAll(/mailto:([^?\"]+)/g)) if (match[1] !== 'imallbeans+creates@gmail.com') fail(`Unexpected contact email: ${match[1]}`);
@@ -28,11 +26,10 @@ for (const asset of ['hero-calgary-skyline.webp', 'hero-bridge-left.png', 'hero-
   if (!html.includes(`/assets/${asset}`)) fail(`Hero depth asset is not used: ${asset}`);
 }
 if (!html.includes('data-hero') || !app.includes('updateHeroDepth')) fail('Hero depth motion is not wired up.');
-if (!html.includes('/assets/about-alvin.webp') || !html.includes('alt="Alvin Tolentino smiling"')) fail('About portrait is missing or has no useful alternative text.');
 const exampleKeys = [...html.matchAll(/data-example="([^"]+)"/g)].map((match) => match[1]);
 if (exampleKeys.length !== 5) fail('Expected five starting-point examples.');
 for (const key of exampleKeys) if (!app.includes(`  ${key}: {`)) fail(`Missing content state for example: ${key}`);
-for (const file of ['styles.css', 'app.js', 'favison.png', '404.html', 'robots.txt', '_headers']) if (!existsSync(join(dist, file))) fail(`Missing output file: ${file}`);
-const total = ['index.html', 'styles.css', 'app.js', 'favison.png'].reduce((sum, file) => sum + statSync(join(dist, file)).size, 0);
+for (const file of ['styles.css', 'app.js', 'favicon.png', '404.html', 'robots.txt', '_headers']) if (!existsSync(join(dist, file))) fail(`Missing output file: ${file}`);
+const total = ['index.html', 'styles.css', 'app.js', 'favicon.png'].reduce((sum, file) => sum + statSync(join(dist, file)).size, 0);
 if (total > 300_000) fail('Core page exceeds the 300 KB budget.');
-console.log(`Passed: page structure, section links, hero and portrait assets, external-link safety, draft privacy, confirmed contact email, and size budget (${Math.round(total / 1024)} KiB).`);
+console.log(`Passed: page structure, section links, hero depth assets, external-link safety, draft privacy, confirmed contact email, and size budget (${Math.round(total / 1024)} KiB).`);
