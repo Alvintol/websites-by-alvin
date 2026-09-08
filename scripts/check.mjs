@@ -22,10 +22,14 @@ if (!html.includes('mailto:imallbeans+creates@gmail.com')) fail('Confirmed conta
 for (const match of html.matchAll(/mailto:([^?\"]+)/g)) if (match[1] !== 'imallbeans+creates@gmail.com') fail(`Unexpected contact email: ${match[1]}`);
 if (!html.includes('Simple web design that won’t break the bank.')) fail('Primary tagline is missing.');
 if (html.includes('Most people call me Beans') || html.includes('Message me on LinkedIn')) fail('Retired copy is still present.');
+for (const asset of ['hero-calgary-skyline.webp', 'hero-bridge-left.png', 'hero-bridge-floor.png', 'hero-bridge-right.png']) {
+  if (!html.includes(`/assets/${asset}`)) fail(`Hero depth asset is not used: ${asset}`);
+}
+if (!html.includes('data-hero') || !app.includes('updateHeroDepth')) fail('Hero depth motion is not wired up.');
 const exampleKeys = [...html.matchAll(/data-example="([^"]+)"/g)].map((match) => match[1]);
-if (exampleKeys.length !== 6) fail('Expected six starting-point examples.');
+if (exampleKeys.length !== 5) fail('Expected five starting-point examples.');
 for (const key of exampleKeys) if (!app.includes(`  ${key}: {`)) fail(`Missing content state for example: ${key}`);
 for (const file of ['styles.css', 'app.js', 'favicon.svg', '404.html', 'robots.txt', '_headers']) if (!existsSync(join(dist, file))) fail(`Missing output file: ${file}`);
 const total = ['index.html', 'styles.css', 'app.js', 'favicon.svg'].reduce((sum, file) => sum + statSync(join(dist, file)).size, 0);
 if (total > 300_000) fail('Core page exceeds the 300 KB budget.');
-console.log(`Passed: page structure, section links, external-link safety, draft privacy, confirmed contact email, and size budget (${Math.round(total / 1024)} KiB).`);
+console.log(`Passed: page structure, section links, hero depth assets, external-link safety, draft privacy, confirmed contact email, and size budget (${Math.round(total / 1024)} KiB).`);

@@ -4,14 +4,43 @@ const header = document.querySelector('[data-header]');
 const progress = document.querySelector('[data-progress]');
 const menuButton = document.querySelector('[data-menu-button]');
 const menu = document.querySelector('[data-menu]');
+const hero = document.querySelector('[data-hero]');
+
+const updateHeroDepth = () => {
+  if (!hero || reduceMotion) return;
+  const travel = Math.max(hero.offsetHeight - window.innerHeight, 1);
+  const amount = Math.min(Math.max((window.scrollY - hero.offsetTop) / travel, 0), 1);
+  hero.style.setProperty('--hero-rail-shift', `${amount * 58}vw`);
+  hero.style.setProperty('--hero-rail-drop', `${amount * 7}vh`);
+  hero.style.setProperty('--hero-rail-scale', String(1 + amount * .15));
+  hero.style.setProperty('--hero-floor-drop', `${amount * 62}vh`);
+  hero.style.setProperty('--hero-floor-scale', String(1 + amount * .22));
+  hero.style.setProperty('--hero-sky-scale', String(1 + amount * .08));
+  hero.style.setProperty('--hero-wash-opacity', String(.58 - amount * .48));
+  hero.style.setProperty('--hero-copy-opacity', String(Math.max(1 - amount * 1.38, 0)));
+  hero.style.setProperty('--hero-copy-shift', `${amount * -8}vh`);
+  hero.style.setProperty('--hero-copy-blur', `${amount * 4}px`);
+  hero.style.setProperty('--hero-sticker-opacity', String(Math.max(1 - amount * 1.8, 0)));
+  hero.style.setProperty('--hero-sticker-shift', `${amount * 16}vw`);
+};
 
 const updateScroll = () => {
   const max = document.documentElement.scrollHeight - window.innerHeight;
   progress.style.transform = `scaleX(${max > 0 ? window.scrollY / max : 0})`;
   header.classList.toggle('is-scrolled', window.scrollY > 24);
+  updateHeroDepth();
 };
 updateScroll();
-window.addEventListener('scroll', updateScroll, { passive: true });
+let scrollFrame = 0;
+const queueScrollUpdate = () => {
+  if (scrollFrame) return;
+  scrollFrame = window.requestAnimationFrame(() => {
+    updateScroll();
+    scrollFrame = 0;
+  });
+};
+window.addEventListener('scroll', queueScrollUpdate, { passive: true });
+window.addEventListener('resize', queueScrollUpdate, { passive: true });
 
 const closeMenu = () => {
   menuButton.setAttribute('aria-expanded', 'false');
@@ -53,24 +82,20 @@ const examples = {
     markup: `<nav class="t-yard-nav"><strong>northline.</strong><span>Services&nbsp;&nbsp; About&nbsp;&nbsp; <b>Get a quote ↗</b></span></nav><div class="t-yard-main"><div class="t-yard-copy"><small>YARD CARE · CALGARY</small><h3>Good yards.<br><em>Better weekends.</em></h3><p>Seasonal care that keeps your property looking its best.</p><span class="t-cta">Explore services →</span></div><div class="t-yard-art"><i></i><strong>48HR</strong><span>AVERAGE<br>RESPONSE</span></div></div><div class="t-yard-services"><span>SPRING CLEANUP</span><span>WEEKLY MOWING</span><span>FALL PREP</span></div>`
   },
   cleaner: {
-    url: 'brightroomcleaning.ca', style: 'Soft cards', label: 'Cleaning', className: 'template-cleaner',
-    markup: `<div class="t-clean-shell"><nav class="t-clean-nav"><span>Services</span><strong>bright room ✦</strong><span>Book a clean</span></nav><div class="t-clean-grid"><div class="t-clean-copy"><small>CALGARY HOME CLEANING</small><h3>More room<br>to <em>breathe.</em></h3><p>Thoughtful recurring cleans for busy homes and full calendars.</p><span class="t-cta">See your options ↗</span></div><aside class="t-clean-card"><span>YOUR WEEKLY RESET</span><strong>Every room,<br>handled.</strong><ul><li>Kitchen + living areas</li><li>Bathrooms + bedrooms</li><li>Floors + finishing touches</li></ul><b>From $140</b></aside></div><div class="t-clean-proof"><strong>4.9</strong><span>★★★★★<br>Neighbourhood favourite</span><p>“The house finally feels easy again.”</p></div></div>`
+    url: 'brightroomcleaning.ca', style: 'Editorial calm', label: 'Cleaning', className: 'template-cleaner',
+    markup: `<nav class="t-clean-nav"><strong><i>✦</i> bright room</strong><span>Services&nbsp;&nbsp; About&nbsp;&nbsp; Reviews&nbsp;&nbsp; Contact</span><b>Book a clean ↗</b></nav><div class="t-clean-hero"><div class="t-clean-copy"><small>THOUGHTFUL HOME CLEANING</small><h3>A calmer home,<br><em>backed by care.</em></h3><p>Reliable recurring cleans designed around your home, schedule, and priorities.</p><span class="t-cta">EXPLORE SERVICES&nbsp; ↗</span></div><div class="t-clean-visual" aria-hidden="true"><span>WELCOME<br>HOME</span><i></i><b>01</b></div></div><div class="t-clean-services"><p><span>01</span><b>Recurring cleans</b><i>Weekly or biweekly</i></p><p><span>02</span><b>Deep cleans</b><i>A complete reset</i></p><p><span>03</span><b>Move-in ready</b><i>Start fresh</i></p></div>`
   },
   detailer: {
-    url: 'parkedpolished.ca', style: 'Dark cinematic', label: 'Mobile detailing', className: 'template-detailer',
-    markup: `<nav class="t-detailer-nav"><strong>P+P</strong><span>PACKAGES&nbsp;&nbsp; RESULTS</span><b>BOOK ↗</b></nav><div class="t-detailer-stage"><div class="t-detailer-glow"></div><small>MOBILE AUTO DETAILING · YYC</small><h3>Driven clean.</h3><p>Showroom-level care, right in your driveway.</p><span class="t-cta">Choose a package →</span><div class="t-detailer-mark">PARKED<br><i>+</i> POLISHED</div></div><div class="t-detailer-stats"><span><b>01</b> We come to you</span><span><b>02</b> Interior + exterior</span><span><b>03</b> Book in two minutes</span></div>`
+    url: 'parkedpolished.ca', style: 'Electric showcase', label: 'Mobile detailing', className: 'template-detailer',
+    markup: `<nav class="t-detailer-nav"><strong>parked+polished</strong><span><i>•••</i>&nbsp;&nbsp; Packages&nbsp;&nbsp; Results&nbsp;&nbsp; Contact&nbsp;&nbsp; ⌕</span><b>Book now</b></nav><div class="t-detailer-stage"><small>FOR DRIVERS WHO NOTICE THE DETAILS</small><div class="t-detailer-year">YYC<br>2026</div><h3>DRIVEN<br>CLEAN.</h3><div class="t-detailer-product"><span>THE SIGNATURE</span><strong>P+P</strong><i>INTERIOR + EXTERIOR</i><b>02.5 HRS</b></div><p>Mobile detailing with a sharp finish and zero waiting-room time.</p><span class="t-cta">Choose your package ↗</span></div><div class="t-detailer-bottom"><span>01&nbsp; We come to you</span><strong>SHOWROOM CARE / DRIVEWAY CONVENIENCE</strong><span>From $180&nbsp; ↗</span></div>`
   },
   contractor: {
-    url: 'trueframecontracting.ca', style: 'Industrial grid', label: 'Contracting', className: 'template-contractor',
-    markup: `<div class="t-build-shell"><aside class="t-build-side"><strong>TF</strong><span>EST. 2018</span><b>CALGARY</b></aside><div class="t-build-main"><nav><strong>TRUEFRAME / CONTRACTING</strong><span>PROJECTS&nbsp;&nbsp; SERVICES&nbsp;&nbsp; CONTACT</span></nav><header><small>RENOVATIONS + REPAIRS</small><h3>BUILT RIGHT.<br>NO RUNAROUND.</h3><p>Clear timelines. Careful work. A home you’re proud to live in.</p></header><div class="t-build-projects"><article><span>01 / KITCHENS</span><b>MAKE THE<br>ROOM WORK</b></article><article><span>02 / BASEMENTS</span><b>USE EVERY<br>SQUARE FOOT</b></article></div></div></div>`
+    url: 'trueframecontracting.ca', style: 'Neon modular', label: 'Contracting', className: 'template-contractor',
+    markup: `<div class="t-build-shell"><nav class="t-build-nav"><strong>▰ TRUEFRAME</strong><span>Home&nbsp;&nbsp; Services&nbsp;&nbsp; Process&nbsp;&nbsp; Work</span><b>Start a project&nbsp; ●</b></nav><div class="t-build-feature"><div><small>RENOVATIONS WITHOUT THE RUNAROUND</small><h3>NEXT<br>LEVEL<br>HOME.</h3><p>Clear plans, skilled trades, and one team accountable from start to finish.</p></div><aside><span>PROJECT 024</span><strong>KITCHEN<br>REBUILT.</strong><i>NW CALGARY</i></aside></div><div class="t-build-modules"><article><span>01</span><b>Clear quotes</b><p>Know the scope before work starts.</p></article><article><span>02</span><b>One point of contact</b><p>No chasing five different trades.</p></article><article><span>03</span><b>Built to last</b><p>Careful work, documented properly.</p></article></div></div>`
   },
   groomer: {
-    url: 'gooddoggrooming.ca', style: 'Playful bento', label: 'Pet grooming', className: 'template-groomer',
-    markup: `<nav class="t-pet-nav"><strong>GOOD DOG!</strong><span>Services&nbsp;&nbsp; First visit&nbsp;&nbsp; <b>Book now</b></span></nav><div class="t-pet-grid"><section class="t-pet-hero"><small>CALM, CAREFUL GROOMING</small><h3>Fresh coat.<br><em>Happy tail.</em></h3><span class="t-cta">Find a time →</span><i>GOOD<br>DOG<br>CLUB</i></section><aside class="t-pet-services"><span>POPULAR</span><strong>THE FULL<br>GROOM</strong><p>Bath · trim · nails · finishing</p><b>From $75</b></aside><aside class="t-pet-review"><strong>“Patient from hello to pickup.”</strong><span>— Milo’s person</span></aside><aside class="t-pet-note"><span>NEW CLIENT?</span><strong>Start here ↗</strong></aside></div>`
-  },
-  bakery: {
-    url: 'madebymae.ca', style: 'Boutique serif', label: 'Bakery', className: 'template-bakery',
-    markup: `<nav class="t-bake-nav"><span>Our cakes</span><strong>MADE BY MAE<small>BAKESHOP</small></strong><span>Order yours</span></nav><div class="t-bake-hero"><small>SMALL-BATCH · MADE IN CALGARY</small><h3>Baked for your<br><em>best moments.</em></h3><p>Custom cakes and treats made slowly, thoughtfully, and just for you.</p><span class="t-cta">Begin an order</span><div class="t-bake-seal">MADE<br>WITH<br>CARE</div></div><div class="t-bake-menu"><span>THIS WEEK</span><p><b>Brown butter cookies</b><i>$18 / six</i></p><p><b>Celebration cake</b><i>from $68</i></p><p><b>Lemon loaf</b><i>$24</i></p></div>`
+    url: 'gooddoggrooming.ca', style: 'Atmospheric retreat', label: 'Pet grooming', className: 'template-groomer',
+    markup: `<div class="t-pet-shell"><nav class="t-pet-nav"><strong><i>✦</i> Good Dog</strong><span>Services&nbsp;&nbsp; Pricing&nbsp;&nbsp; First Visit&nbsp;&nbsp; About Us</span><b>Book a visit</b></nav><div class="t-pet-hero"><small>ONE-ON-ONE GROOMING IN CALGARY</small><h3>Escape the rush.<br>Grooming with <em>patience.</em></h3><p>A quieter appointment, a gentler pace, and thoughtful care from hello to pickup.</p><span class="t-cta">Find an appointment</span><div class="t-pet-wave" aria-hidden="true"></div></div><div class="t-pet-services"><p><i>✦</i><span><b>Calm first visits</b>Time to settle in.</span></p><p><i>✧</i><span><b>Full grooming</b>Bath, trim, nails.</span></p><p><i>○</i><span><b>Comfort breaks</b>Never rushed.</span></p><p><i>☾</i><span><b>Quiet studio</b>One dog at a time.</span></p></div></div>`
   }
 };
 const demoSite = document.querySelector('[data-demo-site]');
