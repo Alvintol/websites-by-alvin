@@ -32,7 +32,7 @@ if (!html.includes('/assets/about-alvin.webp') || !html.includes('alt="Alvin Tol
 const exampleKeys = [...html.matchAll(/data-example="([^"]+)"/g)].map((match) => match[1]);
 if (exampleKeys.length !== 5) fail('Expected five starting-point examples.');
 for (const key of exampleKeys) if (!app.includes(`  ${key}: {`)) fail(`Missing content state for example: ${key}`);
-for (const file of ['styles.css', 'app.js', 'favicon.svg', '404.html', 'robots.txt', '_headers']) if (!existsSync(join(dist, file))) fail(`Missing output file: ${file}`);
-const total = ['index.html', 'styles.css', 'app.js', 'favicon.svg'].reduce((sum, file) => sum + statSync(join(dist, file)).size, 0);
+for (const file of ['styles.css', 'app.js', 'favison.png', '404.html', 'robots.txt', '_headers']) if (!existsSync(join(dist, file))) fail(`Missing output file: ${file}`);
+const total = ['index.html', 'styles.css', 'app.js', 'favison.png'].reduce((sum, file) => sum + statSync(join(dist, file)).size, 0);
 if (total > 300_000) fail('Core page exceeds the 300 KB budget.');
 console.log(`Passed: page structure, section links, hero and portrait assets, external-link safety, draft privacy, confirmed contact email, and size budget (${Math.round(total / 1024)} KiB).`);

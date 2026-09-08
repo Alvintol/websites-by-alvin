@@ -85,4 +85,10 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline-color:var(--a
 @media (max-width:980px){.site-header:not(.is-scrolled) .site-nav.is-open{color:var(--ink);text-shadow:none}.hero-kicker{margin-left:0}.hero-bottom{width:min(36rem,68vw);margin-right:2vw;margin-left:auto}}
 @media (max-width:640px){.hero-scene::after{background:linear-gradient(90deg,#0719238f 0,#07192338 75%),linear-gradient(180deg,#0719232b 0,transparent 38%,#071923b8 100%)}.hero-title{font-size:clamp(2.65rem,11vw,4.3rem);line-height:.88;letter-spacing:-.05em}.line-outline{padding-left:0}.line-outline span{font-size:.77em}.line-indent{padding-left:7vw}.hero-kicker{font-size:.68rem;line-height:1.35;letter-spacing:.09em}.hero-bottom{width:100%;margin:2rem 0 0}.hero-bottom p{font-size:1rem;padding:.9rem 1rem}.browser-frame{box-shadow:0 1.2rem 2.8rem #07131866}}
 
+/* Keep the About headline beside the portrait instead of across it. */
+.about-section{grid-template-columns:1.15fr .85fr;gap:5vw}.about-sticky h2{left:clamp(25rem,29vw,35rem);width:min(27rem,24vw);font-size:clamp(3.15rem,3.8vw,5rem);line-height:.92}
+
+@media (max-width:1180px){.about-section{grid-template-columns:1fr;gap:3rem}.about-sticky{position:static}.about-intro{min-height:38rem}.about-portrait{left:0;width:clamp(19rem,42vw,28rem)}.about-sticky h2{top:18%;left:clamp(20rem,46vw,29rem);width:min(30rem,46vw);font-size:clamp(3.2rem,6vw,5.2rem)}}
+@media (max-width:640px){.about-intro{min-height:44rem;margin-inline:-1rem;padding:0 1rem}.about-sticky h2{position:relative;top:auto;left:auto;width:100%;padding-right:1rem;font-size:clamp(3rem,13vw,3.6rem);line-height:.9}.about-portrait{left:-.5rem;bottom:0;width:min(20rem,82vw);max-height:62%;margin:0}}
+
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation:none!important;transition:none!important}.hero{height:auto;min-height:92svh}.hero-scene{position:relative;min-height:92svh}.hero-content{opacity:1;transform:none;filter:none}.reveal{opacity:1;transform:none}.cursor-orbit{display:none}.marquee-track{transform:none}}

@@ -20,6 +20,8 @@ const updateHeroDepth = () => {
   hero.style.setProperty('--hero-copy-opacity', String(Math.max(1 - amount * 1.38, 0)));
   hero.style.setProperty('--hero-copy-shift', `${amount * -8}vh`);
   hero.style.setProperty('--hero-copy-blur', `${amount * 4}px`);
+  hero.style.setProperty('--hero-sticker-opacity', String(Math.max(1 - amount * 1.8, 0)));
+  hero.style.setProperty('--hero-sticker-shift', `${amount * 16}vw`);
 };
 
 const updateScroll = () => {
@@ -75,10 +77,6 @@ if (reduceMotion || !('IntersectionObserver' in window)) {
 }
 
 const examples = {
-  yard: {
-    url: 'northlineyard.ca', style: 'Editorial split', label: 'Yard care', className: 'template-yard',
-    markup: `<nav class="t-yard-nav"><strong>northline.</strong><span>Services&nbsp;&nbsp; About&nbsp;&nbsp; <b>Get a quote ↗</b></span></nav><div class="t-yard-main"><div class="t-yard-copy"><small>YARD CARE · CALGARY</small><h3>Good yards.<br><em>Better weekends.</em></h3><p>Seasonal care that keeps your property looking its best.</p><span class="t-cta">Explore services →</span></div><div class="t-yard-art"><i></i><strong>48HR</strong><span>AVERAGE<br>RESPONSE</span></div></div><div class="t-yard-services"><span>SPRING CLEANUP</span><span>WEEKLY MOWING</span><span>FALL PREP</span></div>`
-  },
   cleaner: {
     url: 'brightroomcleaning.ca', style: 'Editorial calm', label: 'Cleaning', className: 'template-cleaner',
     markup: `<nav class="t-clean-nav"><strong><i>✦</i> bright room</strong><span>Services&nbsp;&nbsp; About&nbsp;&nbsp; Reviews&nbsp;&nbsp; Contact</span><b>Book a clean ↗</b></nav><div class="t-clean-hero"><div class="t-clean-copy"><small>THOUGHTFUL HOME CLEANING</small><h3>A calmer home,<br><em>backed by care.</em></h3><p>Reliable recurring cleans designed around your home, schedule, and priorities.</p><span class="t-cta">EXPLORE SERVICES&nbsp; ↗</span></div><div class="t-clean-visual" aria-hidden="true"><span>WELCOME<br>HOME</span><i></i><b>01</b></div></div><div class="t-clean-services"><p><span>01</span><b>Recurring cleans</b><i>Weekly or biweekly</i></p><p><span>02</span><b>Deep cleans</b><i>A complete reset</i></p><p><span>03</span><b>Move-in ready</b><i>Start fresh</i></p></div>`
