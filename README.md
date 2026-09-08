@@ -1,4 +1,4 @@
-# Websites by Alvin
+# Created by Alvin
 
 Private working draft of Alvin Tolentino's website service for small businesses.
 
