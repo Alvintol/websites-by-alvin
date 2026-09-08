@@ -16,7 +16,9 @@ for (const match of html.matchAll(/\b(?:href|src)="([^"]+)"/g)) {
 }
 for (const tag of html.matchAll(/<a\b[^>]*target="_blank"[^>]*>/g)) if (!/rel="[^"]*noopener[^"]*noreferrer[^"]*"/.test(tag[0])) fail('External links require safe rel attributes.');
 if (!/<meta name="description" content="[^"]+">/.test(html)) fail('Missing page description.');
-if (!html.includes('<meta name="robots" content="noindex, nofollow">')) fail('Private draft must remain noindex.');
+if (!html.includes('<meta name="robots" content="index, follow">')) {
+  fail('Public site must allow indexing.');
+}
 if (html.includes('tel:')) fail('Draft should not publish an unconfirmed phone number.');
 if (!html.includes('mailto:imallbeans+creates@gmail.com')) fail('Confirmed contact email is missing.');
 for (const match of html.matchAll(/mailto:([^?\"]+)/g)) if (match[1] !== 'imallbeans+creates@gmail.com') fail(`Unexpected contact email: ${match[1]}`);
