@@ -3,12 +3,10 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>
-      Created by Alvin | Simple web design that won’t break the bank
-    </title>
+    <title>Created by Alvin | Simple websites that won’t break the bank</title>
     <meta
       name="description"
-      content="Simple web design that won’t break the bank. Alvin Tolentino builds clear, practical websites for small businesses that are short on time or unsure where to start."
+      content="Simple webites that won’t break the bank. Alvin builds clear, practical websites for small businesses that are short on time or unsure where to start."
     />
     <meta name="robots" content="noindex, nofollow" />
     <meta name="theme-color" content="#315766" />
@@ -20,9 +18,6 @@
     <a class="skip-link" href="#main">Skip to content</a>
     <div class="scroll-progress" aria-hidden="true">
       <span data-progress></span>
-    </div>
-    <div class="cursor-orbit" aria-hidden="true" data-cursor>
-      <span>+</span>
     </div>
     <header class="site-header" data-header>
       <a class="wordmark" href="#top" aria-label="Created by Alvin home"
@@ -133,51 +128,67 @@
         </div>
       </div>
       <section class="section why-section" id="why" aria-labelledby="why-title">
-        <div class="section-number">01</div>
-        <div class="section-intro reveal">
-          <p class="eyebrow">WHO THIS IS FOR</p>
-          <h2 id="why-title">
-            A website shouldn’t become another job on your list.
-          </h2>
-          <p>
-            You already have a business to run. I help with the part that keeps
-            getting pushed to “later.”
-          </p>
+        <div class="why-backdrop" aria-hidden="true">
+          <img
+            src="/assets/why-websites-layered.webp"
+            width="1536"
+            height="1024"
+            alt=""
+            loading="lazy"
+            decoding="async"
+          />
         </div>
-        <div class="problem-grid">
-          <article class="problem-card tilt reveal" data-tilt>
-            <span class="card-index">A</span
-            ><span class="scribble" aria-hidden="true">↗</span>
-            <h3>No time</h3>
+
+        <div class="why-content">
+          <div class="section-number">01</div>
+          <div class="section-intro reveal">
+            <p class="eyebrow">WHO THIS IS FOR</p>
+            <h2 id="why-title">
+              A website shouldn’t become another job on your list.
+            </h2>
             <p>
-              You’re busy serving customers, answering calls, and doing the
-              actual work. Building a website keeps falling behind.
+              You already have a business to run. I help with the part that
+              keeps getting pushed to “later.”
             </p>
-            <div class="card-answer">I keep the process focused.</div>
-          </article>
-          <article
-            class="problem-card problem-card-yellow tilt reveal"
-            data-tilt
-          >
-            <span class="card-index">B</span
-            ><span class="scribble" aria-hidden="true">$</span>
-            <h3>No agency budget</h3>
-            <p>
-              You need something professional, but a large custom build doesn’t
-              make sense for where your business is today.
-            </p>
-            <div class="card-answer">We start with what matters.</div>
-          </article>
-          <article class="problem-card problem-card-blue tilt reveal" data-tilt>
-            <span class="card-index">C</span
-            ><span class="scribble" aria-hidden="true">?</span>
-            <h3>No clear starting point</h3>
-            <p>
-              Domains, hosting, layouts, search results—there are too many
-              decisions before you’ve written a single word.
-            </p>
-            <div class="card-answer">I make the choices understandable.</div>
-          </article>
+          </div>
+          <div class="problem-grid">
+            <article class="problem-card tilt reveal" data-tilt>
+              <span class="card-index">A</span
+              ><span class="scribble" aria-hidden="true">↗</span>
+              <h3>No time</h3>
+              <p>
+                You’re busy serving customers, answering calls, and doing the
+                actual work. Building a website keeps falling behind.
+              </p>
+              <div class="card-answer">I keep the process focused.</div>
+            </article>
+            <article
+              class="problem-card problem-card-yellow tilt reveal"
+              data-tilt
+            >
+              <span class="card-index">B</span
+              ><span class="scribble" aria-hidden="true">$</span>
+              <h3>No agency budget</h3>
+              <p>
+                You need something professional, but a large custom build
+                doesn’t make sense for where your business is today.
+              </p>
+              <div class="card-answer">We start with what matters.</div>
+            </article>
+            <article
+              class="problem-card problem-card-blue tilt reveal"
+              data-tilt
+            >
+              <span class="card-index">C</span
+              ><span class="scribble" aria-hidden="true">?</span>
+              <h3>No clear starting point</h3>
+              <p>
+                Domains, hosting, layouts, search results—there are too many
+                decisions before you’ve written a single word.
+              </p>
+              <div class="card-answer">I make the choices understandable.</div>
+            </article>
+          </div>
         </div>
       </section>
       <section class="demo-section" id="offer" aria-labelledby="offer-title">
@@ -197,33 +208,40 @@
             <button
               class="picker-button is-active"
               type="button"
-              data-example="yard"
+              data-example="cleaner"
               aria-pressed="true"
             >
-              Editorial</button
-            ><button
-              class="picker-button"
-              type="button"
-              data-example="cleaner"
-              aria-pressed="false"
-            >
-              Electric showcase</button
-            ><button
+              Editorial
+            </button>
+
+            <button
               class="picker-button"
               type="button"
               data-example="detailer"
               aria-pressed="false"
             >
-              Neon modular</button
-            ><button
+              Electric showcase
+            </button>
+
+            <button
               class="picker-button"
               type="button"
               data-example="contractor"
               aria-pressed="false"
             >
+              Neon modular
+            </button>
+
+            <button
+              class="picker-button"
+              type="button"
+              data-example="groomer"
+              aria-pressed="false"
+            >
               Atmospheric
             </button>
-            <span class="drag-note" aria-hidden="true">AND MORE</span>
+
+            <p class="picker-more">AND MORE</p>
           </div>
         </div>
         <div class="browser-stage reveal" data-browser-stage>
@@ -304,7 +322,7 @@
               src="/assets/about-alvin.webp"
               width="451"
               height="550"
-              alt="Alvin Tolentino smiling"
+              alt="Alvin smiling"
               loading="lazy"
               decoding="async"
             />

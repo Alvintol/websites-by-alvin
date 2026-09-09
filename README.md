@@ -1,6 +1,6 @@
 # Created by Alvin
 
-Private working draft of Alvin Tolentino's website service for small businesses.
+Private working draft of Alvin's website service for small businesses.
 
 ```sh
 npm run build
