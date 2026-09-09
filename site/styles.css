@@ -3043,3 +3043,23 @@ summary:focus-visible {
     opacity: 0.72;
   }
 }
+
+.why-section .section-intro > p:last-child {
+  position: relative;
+  z-index: 2;
+  padding: 1.1rem 1.25rem;
+  border-left: 3px solid var(--acid);
+  background: rgb(23 38 45 / 92%);
+  color: var(--white);
+  box-shadow: 0 1rem 2.5rem rgb(23 38 45 / 22%);
+  backdrop-filter: blur(12px);
+  text-shadow: none;
+}
+
+@media (max-width: 640px) {
+  .why-section .section-intro > p:last-child {
+    width: 100%;
+    margin-top: 1.5rem;
+    background: rgb(23 38 45 / 95%);
+  }
+}
