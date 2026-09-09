@@ -18,8 +18,8 @@ for (const tag of html.matchAll(/<a\b[^>]*target="_blank"[^>]*>/g)) if (!/rel="[
 if (!/<meta name="description" content="[^"]+">/.test(html)) fail('Missing page description.');
 if (!html.includes('<meta name="robots" content="noindex, nofollow">')) fail('Private draft must remain noindex.');
 if (html.includes('tel:')) fail('Draft should not publish an unconfirmed phone number.');
-if (!html.includes('mailto:imallbeans+creates@gmail.com')) fail('Confirmed contact email is missing.');
-for (const match of html.matchAll(/mailto:([^?\"]+)/g)) if (match[1] !== 'imallbeans+creates@gmail.com') fail(`Unexpected contact email: ${match[1]}`);
+if (!html.includes('mailto:imallbeans+createdbyalvin@gmail.com')) fail('Confirmed contact email is missing.');
+for (const match of html.matchAll(/mailto:([^?\"]+)/g)) if (match[1] !== 'imallbeans+createdbyalvin@gmail.com') fail(`Unexpected contact email: ${match[1]}`);
 if (!html.includes('Simple web design that won’t break the bank.')) fail('Primary tagline is missing.');
 if (html.includes('Most people call me Beans') || html.includes('Message me on LinkedIn')) fail('Retired copy is still present.');
 for (const asset of ['hero-calgary-skyline.webp', 'hero-bridge-left.png', 'hero-bridge-floor.png', 'hero-bridge-right.png']) {
