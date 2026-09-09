@@ -2763,6 +2763,19 @@ summary:focus-visible {
   border-top-width: 1px;
 }
 
+.footer-mark {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+}
+
+.footer-mark img {
+  display: block;
+  width: 4rem;
+  height: 4rem;
+  object-fit: contain;
+}
+
 @media (max-width: 980px) {
   .site-header:not(.is-scrolled) .site-nav.is-open {
     color: var(--ink);
