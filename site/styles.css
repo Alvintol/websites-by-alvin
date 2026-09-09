@@ -3076,3 +3076,66 @@ summary:focus-visible {
     background: rgb(23 38 45 / 95%);
   }
 }
+
+.site-footer {
+  display: grid;
+  grid-template-columns: 6rem minmax(15rem, 1fr) auto;
+  align-items: center;
+  gap: 2rem;
+  min-height: 0;
+  padding: 1.75rem 3vw;
+  border-top: 1px solid var(--line);
+}
+
+.footer-mark {
+  display: block;
+  width: 5rem;
+  height: 5rem;
+  padding: 0;
+  background: none;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.footer-mark img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.site-footer > p {
+  margin: 0;
+  text-align: center;
+}
+
+.footer-links {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 760px) {
+  .site-footer {
+    grid-template-columns: 1fr;
+    justify-items: start;
+    gap: 1.25rem;
+    padding: 2rem 1rem;
+  }
+
+  .footer-mark {
+    width: 4.5rem;
+    height: 4.5rem;
+  }
+
+  .site-footer > p {
+    text-align: left;
+  }
+
+  .footer-links {
+    justify-content: flex-start;
+  }
+}
