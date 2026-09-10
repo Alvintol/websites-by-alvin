@@ -163,10 +163,10 @@ const renderExample = (key, animate = true) => {
   iframe.src = next.embedUrl;
   iframe.title = `${next.label} website preview`;
   iframe.loading = 'lazy';
-  iframe.setAttribute('aria-label', `${next.label} website preview`);
 
   demoSite.appendChild(iframe);
 };
+
 
 document
   .querySelectorAll('[data-example]')
