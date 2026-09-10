@@ -76,22 +76,179 @@ if (reduceMotion || !('IntersectionObserver' in window)) {
 
 const examples = {
   cleaner: {
-    url: 'brightroomcleaning.ca', style: 'Editorial calm', label: 'Cleaning', className: 'template-cleaner',
-    markup: `<nav class="t-clean-nav"><strong><i>✦</i> bright room</strong><span>Services&nbsp;&nbsp; About&nbsp;&nbsp; Reviews&nbsp;&nbsp; Contact</span><b>Book a clean ↗</b></nav><div class="t-clean-hero"><div class="t-clean-copy"><small>THOUGHTFUL HOME CLEANING</small><h3>A calmer home,<br><em>backed by care.</em></h3><p>Reliable recurring cleans designed around your home, schedule, and priorities.</p><span class="t-cta">EXPLORE SERVICES&nbsp; ↗</span></div><div class="t-clean-visual" aria-hidden="true"><span>WELCOME<br>HOME</span><i></i></div></div><div class="t-clean-services"><p><b>Recurring cleans</b><i>Weekly or biweekly</i></p><p><b>Deep cleans</b><i>A complete reset</i></p><p><b>Move-in ready</b><i>Start fresh</i></p></div>`
+    url: 'brightroomcleaning.ca',
+    style: 'Editorial calm',
+    label: 'Cleaning',
+    className: 'template-cleaner',
+    markup: `<nav class="t-clean-nav"><strong><i>✦</i> bright room</strong><span>Services&nbsp;&nbsp; About&nbsp;&nbsp; Reviews&nbsp;&nbsp; Contact</span><b>Book a clean ↗</b></nav><div class="t-clean-hero"><div class="t-clean-copy"><small>THOUGHTFUL HOME CLEANING</small><h3>A calmer home,<br><em>backed by care.</em></h3><p>Reliable recurring cleans designed around your home, schedule, and priorities.</p><span class="t-cta">EXPLORE SERVICES&nbsp; ↗</span></div><div class="t-clean-visual" aria-hidden="true"><span>WELCOME<br>HOME</span><i></i></div></div><div class="t-clean-services"><p><b>Recurring cleans</b><i>Weekly or biweekly</i></p><p><b>Deep cleans</b><i>A complete reset</i></p><p><b>Move-in ready</b><i>Start fresh</i></p>`
   },
+
   detailer: {
-    url: 'parkedpolished.ca', style: 'Electric showcase', label: 'Mobile detailing', className: 'template-detailer',
-    markup: `<nav class="t-detailer-nav"><strong>parked+polished</strong><span><i>•••</i>&nbsp;&nbsp; Packages&nbsp;&nbsp; Results&nbsp;&nbsp; Contact&nbsp;&nbsp; ⌕</span><b>Book now</b></nav><div class="t-detailer-stage"><small>FOR DRIVERS WHO NOTICE THE DETAILS</small><div class="t-detailer-year">YYC<br>2026</div><h3>DRIVEN<br>CLEAN.</h3><div class="t-detailer-product"><span>THE SIGNATURE</span><strong>P+P</strong><i>INTERIOR + EXTERIOR</i><b>02.5 HRS</b></div><p>Mobile detailing with a sharp finish and zero waiting-room time.</p><span class="t-cta">Choose your package ↗</span></div><div class="t-detailer-bottom">We come to you</span><strong>SHOWROOM CARE / DRIVEWAY CONVENIENCE</strong><span>From $180&nbsp; ↗</span></div>`
+    url: 'basicelectricshowcase.createdbyalvin.com',
+    style: 'Electric showcase',
+    label: 'Mobile detailing',
+    className: 'template-detailer',
+    markup: `
+      <div class="t-detailer-preview">
+        <nav class="t-detailer-nav">
+          <strong>parked+polished</strong>
+          <span>Packages&nbsp;&nbsp; Results&nbsp;&nbsp; Contact&nbsp;&nbsp; ⌕</span>
+          <b>Book now</b>
+        </nav>
+
+        <div class="t-detailer-hero">
+          <div class="t-detailer-meta">
+            <small>FOR DRIVERS WHO NOTICE THE DETAILS</small>
+            <span>YYC<br>2026</span>
+          </div>
+
+          <div class="t-detailer-heading">
+            <h3>DRIVEN<br><em>CLEAN.</em></h3>
+            <p>Mobile detailing with a sharp finish and zero waiting-room time.</p>
+          </div>
+
+          <div class="t-detailer-car" aria-hidden="true">
+            <div class="t-detailer-car-glow"></div>
+            <div class="t-detailer-car-shape">
+              <span></span>
+              <i></i>
+            </div>
+          </div>
+
+          <div class="t-detailer-package">
+            <small>THE SIGNATURE</small>
+            <strong>P+P</strong>
+            <span>INTERIOR + EXTERIOR</span>
+            <b>02.5 HRS</b>
+          </div>
+        </div>
+
+        <div class="t-detailer-bottom">
+          <span>WE COME TO YOU</span>
+          <strong>SHOWROOM CARE / DRIVEWAY CONVENIENCE</strong>
+          <b>FROM $180&nbsp; ↗</b>
+        </div>
+      </div>
+    `
   },
+
   contractor: {
-    url: 'trueframecontracting.ca', style: 'Neon modular', label: 'Contracting', className: 'template-contractor',
-    markup: `<div class="t-build-shell"><nav class="t-build-nav"><strong>▰ TRUEFRAME</strong><span>Home&nbsp;&nbsp; Services&nbsp;&nbsp; Process&nbsp;&nbsp; Work</span><b>Start a project&nbsp; ●</b></nav><div class="t-build-feature"><div><small>RENOVATIONS WITHOUT THE RUNAROUND</small><h3>NEXT<br>LEVEL<br>HOME.</h3><p>Clear plans, skilled trades, and one team accountable from start to finish.</p></div><aside><span>PROJECT 024</span><strong>KITCHEN<br>REBUILT.</strong><i>NW CALGARY</i></aside></div><div class="t-build-modules"><article><b>Clear quotes</b><p>Know the scope before work starts.</p></article><article><b>One point of contact</b><p>No chasing five different trades.</p></article><article><b>Built to last</b><p>Careful work, documented properly.</p></article></div></div>`
+    url: 'neonmodular.createdbyalvin.com',
+    style: 'Neon modular',
+    label: 'Contracting',
+    className: 'template-contractor',
+    markup: `
+      <div class="t-build-shell">
+        <nav class="t-build-nav">
+          <strong><i>▰</i> TRUEFRAME</strong>
+          <span>Home&nbsp;&nbsp; Services&nbsp;&nbsp; Process&nbsp;&nbsp; Work</span>
+          <b>Start a project&nbsp; ●</b>
+        </nav>
+
+        <div class="t-build-grid">
+          <div class="t-build-intro">
+            <small>RENOVATIONS WITHOUT THE RUNAROUND</small>
+            <h3>NEXT<br><span>LEVEL</span><br>HOME.</h3>
+            <p>Clear plans, skilled trades, and one team accountable from start to finish.</p>
+            <b class="t-build-arrow">START A PROJECT&nbsp; ↗</b>
+          </div>
+
+          <aside class="t-build-project">
+            <span>PROJECT 024</span>
+            <strong>KITCHEN<br>REBUILT.</strong>
+            <i>NW CALGARY</i>
+            <b>024 / 001</b>
+          </aside>
+
+          <div class="t-build-module t-build-module-one">
+            <small>01</small>
+            <strong>Clear quotes</strong>
+            <p>Know the scope before work starts.</p>
+          </div>
+
+          <div class="t-build-module t-build-module-two">
+            <small>02</small>
+            <strong>One point of contact</strong>
+            <p>No chasing five different trades.</p>
+          </div>
+
+          <div class="t-build-module t-build-module-three">
+            <small>03</small>
+            <strong>Built to last</strong>
+            <p>Careful work, documented properly.</p>
+          </div>
+        </div>
+      </div>
+    `
   },
+
   groomer: {
-    url: 'gooddoggrooming.ca', style: 'Atmospheric retreat', label: 'Pet grooming', className: 'template-groomer',
-    markup: `<div class="t-pet-shell"><nav class="t-pet-nav"><strong><i>✦</i> Good Dog</strong><span>Services&nbsp;&nbsp; Pricing&nbsp;&nbsp; First Visit&nbsp;&nbsp; About Us</span><b>Book a visit</b></nav><div class="t-pet-hero"><small>ONE-ON-ONE GROOMING IN CALGARY</small><h3>Escape the rush.<br>Grooming with <em>patience.</em></h3><p>A quieter appointment, a gentler pace, and thoughtful care from hello to pickup.</p><span class="t-cta">Find an appointment</span><div class="t-pet-wave" aria-hidden="true"></div></div><div class="t-pet-services"><p><i>✦</i><span><b>Calm first visits</b>Time to settle in.</span></p><p><i>✧</i><span><b>Full grooming</b>Bath, trim, nails.</span></p><p><i>○</i><span><b>Comfort breaks</b>Never rushed.</span></p><p><i>☾</i><span><b>Quiet studio</b>One dog at a time.</span></p></div></div>`
+    url: 'basicatmospheric.createdbyalvin.com',
+    style: 'Atmospheric retreat',
+    label: 'Pet grooming',
+    className: 'template-groomer',
+    markup: `
+      <div class="t-pet-shell">
+        <nav class="t-pet-nav">
+          <strong><i>✦</i> Good Dog</strong>
+          <span>Services&nbsp;&nbsp; Pricing&nbsp;&nbsp; First Visit&nbsp;&nbsp; About Us</span>
+          <b>Book a visit</b>
+        </nav>
+
+        <div class="t-pet-hero">
+          <div class="t-pet-copy">
+            <small>ONE-ON-ONE GROOMING IN CALGARY</small>
+
+            <h3>
+              Escape the rush.<br>
+              Grooming with <em>patience.</em>
+            </h3>
+
+            <p>
+              A quieter appointment, a gentler pace, and thoughtful care
+              from hello to pickup.
+            </p>
+
+            <span class="t-cta">Find an appointment&nbsp; ↗</span>
+          </div>
+
+          <div class="t-pet-atmosphere" aria-hidden="true">
+            <div class="t-pet-sun"></div>
+            <div class="t-pet-blob t-pet-blob-one"></div>
+            <div class="t-pet-blob t-pet-blob-two"></div>
+            <div class="t-pet-dog">
+              <span></span>
+              <i></i>
+            </div>
+          </div>
+        </div>
+
+        <div class="t-pet-services">
+          <p>
+            <i>✦</i>
+            <span><b>Calm first visits</b>Time to settle in.</span>
+          </p>
+
+          <p>
+            <i>✧</i>
+            <span><b>Full grooming</b>Bath, trim, nails.</span>
+          </p>
+
+          <p>
+            <i>○</i>
+            <span><b>Comfort breaks</b>Never rushed.</span>
+          </p>
+
+          <p>
+            <i>☾</i>
+            <span><b>Quiet studio</b>One dog at a time.</span>
+          </p>
+        </div>
+      </div>
+    `
   }
 };
+
 const demoSite = document.querySelector('[data-demo-site]');
 const demoUrl = document.querySelector('[data-demo-url]');
 const demoStyle = document.querySelector('[data-demo-style]');
