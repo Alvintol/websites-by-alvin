@@ -115,12 +115,15 @@ const demoCount = document.querySelector('[data-demo-count]');
 const exampleOrder = Object.keys(examples);
 let currentExample = 0;
 
+let renderVersion = 0;
+
 const renderExample = (key, animate = true) => {
   const next = examples[key];
+  const version = ++renderVersion;
 
   currentExample = exampleOrder.indexOf(key);
 
-  // Update the active example button
+  // Update active buttons immediately
   document.querySelectorAll('[data-example]').forEach((item) => {
     const active = item.dataset.example === key;
 
@@ -128,7 +131,7 @@ const renderExample = (key, animate = true) => {
     item.setAttribute('aria-pressed', String(active));
   });
 
-  // Animate the browser preview when changing examples
+  // Animate the browser preview
   if (animate) {
     demoSite.animate(
       [
@@ -148,14 +151,13 @@ const renderExample = (key, animate = true) => {
     );
   }
 
-  // Update browser chrome
+  // Update browser chrome immediately
   demoUrl.textContent = next.url;
   demoStyle.textContent = next.style;
 
   demoCount.textContent =
     `${String(currentExample + 1).padStart(2, '0')} / ${String(exampleOrder.length).padStart(2, '0')}`;
 
-  // Update preview class
   demoSite.className = `browser-site ${next.className}`;
 
   demoSite.setAttribute(
@@ -163,30 +165,56 @@ const renderExample = (key, animate = true) => {
     `${next.label} live website preview`
   );
 
-  // Remove previous iframe
-  demoSite.replaceChildren();
+  /*
+   * Completely remove the previous iframe.
+   * This aborts its navigation and prevents an old
+   * page from hanging around during rapid clicks.
+   */
+  const oldIframe = demoSite.querySelector('iframe');
 
-  // Create live website iframe
+  if (oldIframe) {
+    oldIframe.src = 'about:blank';
+    oldIframe.remove();
+  }
+
+  /*
+   * Create a completely new iframe for this example.
+   */
   const iframe = document.createElement('iframe');
 
-  iframe.src = next.embedUrl;
   iframe.title = `${next.label} live website preview`;
-
-  // Let the iframe load only when needed
-  iframe.loading = 'lazy';
-
-  // Explicitly allow the iframe to scroll
+  iframe.loading = 'eager';
   iframe.setAttribute('scrolling', 'yes');
-
-  // Don't sandbox this iframe.
-  // The live websites may rely on scripts, fonts, animations, etc.
   iframe.setAttribute(
     'referrerpolicy',
     'strict-origin-when-cross-origin'
   );
 
+  /*
+   * Give the iframe a temporary blank page first.
+   * This ensures the browser treats every example
+   * as a completely new navigation.
+   */
+  iframe.src = 'about:blank';
+
   demoSite.appendChild(iframe);
+
+  /*
+   * Force the new URL onto the iframe on the next
+   * browser frame. This prevents rapid successive
+   * clicks from getting coalesced by the browser.
+   */
+  requestAnimationFrame(() => {
+    /*
+     * If another example was clicked while waiting,
+     * don't load this obsolete example.
+     */
+    if (version !== renderVersion) return;
+
+    iframe.src = next.embedUrl;
+  });
 };
+
 
 // Example selector buttons
 document
