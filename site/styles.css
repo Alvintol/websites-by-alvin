@@ -1554,14 +1554,21 @@ h3 {
 }
 .process-list li {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  gap: clamp(1.5rem, 3vw, 3rem);
+  grid-template-columns: 3rem 1fr auto;
+  gap: 1.5rem;
   padding: 2.4rem 0;
   border-bottom: 2px solid var(--ink);
   align-items: start;
 }
 .process-list li > span {
-  display: none;
+  width: 2rem;
+  height: 2rem;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--ink);
+  border-radius: 50%;
+  font-size: 0.75rem;
+  font-weight: 800;
 }
 .process-list h3 {
   font-size: 1.65rem;
@@ -1571,12 +1578,9 @@ h3 {
   max-width: 33rem;
 }
 .process-list b {
-  align-self: center;
-  font-size: clamp(0.9rem, 0.9vw, 1.05rem);
-  line-height: 1;
-  letter-spacing: 0.18em;
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
   writing-mode: vertical-rl;
-  text-orientation: mixed;
 }
 .faq-section {
   display: grid;
@@ -2150,13 +2154,11 @@ h3 {
     font-size: 4rem;
   }
   .process-list li {
-    grid-template-columns: minmax(0, 1fr) auto;
-    gap: 1.25rem;
+    grid-template-columns: 2rem 1fr;
+    gap: 1rem;
   }
   .process-list li b {
-    display: block;
-    font-size: 0.8rem;
-    letter-spacing: 0.14em;
+    display: none;
   }
   .faq-section {
     gap: 2rem;
@@ -3622,4 +3624,20 @@ summary:focus-visible {
 
 .template-groomer .t-pet-services i {
   color: #8b755f;
+}
+
+.browser-site {
+  position: relative;
+  overflow: hidden;
+}
+
+.browser-site iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 100%;
+  border: 0;
+  margin: 0;
+  padding: 0;
+  background: #fff;
 }
