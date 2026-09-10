@@ -112,18 +112,57 @@ const demoSite = document.querySelector('[data-demo-site]');
 const demoUrl = document.querySelector('[data-demo-url]');
 const demoStyle = document.querySelector('[data-demo-style]');
 const demoCount = document.querySelector('[data-demo-count]');
+
 const exampleOrder = Object.keys(examples);
-let currentExample = 0;
 
-let renderVersion = 0;
+/*
+ * =========================================================
+ * EXAMPLE STATE
+ * =========================================================
+ *
+ * This is essentially the vanilla-JS equivalent of:
+ *
+ * const [selectedExample, setSelectedExample] = useState(...)
+ *
+ */
+const exampleState = {
+  selected: exampleOrder[0]
+};
 
-const renderExample = (key, animate = true) => {
+/*
+ * =========================================================
+ * SET EXAMPLE
+ * =========================================================
+ *
+ * This is the equivalent of:
+ *
+ * setSelectedExample(key)
+ *
+ * Every click updates state first.
+ * renderExample() then renders whatever is currently
+ * in state.
+ */
+const setExample = (key) => {
+  if (!examples[key]) return;
+
+  exampleState.selected = key;
+  renderExample();
+};
+
+/*
+ * =========================================================
+ * RENDER
+ * =========================================================
+ */
+const renderExample = (animate = true) => {
+  const key = exampleState.selected;
   const next = examples[key];
-  const version = ++renderVersion;
 
-  currentExample = exampleOrder.indexOf(key);
+  const currentIndex = exampleOrder.indexOf(key);
 
-  // Update active buttons immediately
+  /*
+   * Update buttons
+   */
   document.querySelectorAll('[data-example]').forEach((item) => {
     const active = item.dataset.example === key;
 
@@ -131,32 +170,14 @@ const renderExample = (key, animate = true) => {
     item.setAttribute('aria-pressed', String(active));
   });
 
-  // Animate the browser preview
-  if (animate) {
-    demoSite.animate(
-      [
-        {
-          opacity: .18,
-          transform: 'translateX(14px) scale(.985)'
-        },
-        {
-          opacity: 1,
-          transform: 'none'
-        }
-      ],
-      {
-        duration: reduceMotion ? 0 : 380,
-        easing: 'cubic-bezier(.2,.8,.2,1)'
-      }
-    );
-  }
-
-  // Update browser chrome immediately
+  /*
+   * Update browser information
+   */
   demoUrl.textContent = next.url;
   demoStyle.textContent = next.style;
 
   demoCount.textContent =
-    `${String(currentExample + 1).padStart(2, '0')} / ${String(exampleOrder.length).padStart(2, '0')}`;
+    `${String(currentIndex + 1).padStart(2, '0')} / ${String(exampleOrder.length).padStart(2, '0')}`;
 
   demoSite.className = `browser-site ${next.className}`;
 
@@ -166,54 +187,127 @@ const renderExample = (key, animate = true) => {
   );
 
   /*
-   * Completely remove the previous iframe.
-   * This aborts its navigation and prevents an old
-   * page from hanging around during rapid clicks.
+   * Animate the browser frame.
    */
-  const oldIframe = demoSite.querySelector('iframe');
-
-  if (oldIframe) {
-    oldIframe.src = 'about:blank';
-    oldIframe.remove();
+  if (animate) {
+    demoSite.animate(
+      [
+        {
+          opacity: 0,
+          transform: 'translateX(14px) scale(.985)'
+        },
+        {
+          opacity: 1,
+          transform: 'none'
+        }
+      ],
+      {
+        duration: reduceMotion ? 0 : 300,
+        easing: 'cubic-bezier(.2,.8,.2,1)'
+      }
+    );
   }
 
   /*
-   * Create a completely new iframe for this example.
+   * =======================================================
+   * IMPORTANT
+   * =======================================================
+   *
+   * Don't modify the existing iframe.
+   *
+   * Destroy the entire contents of the preview and create
+   * a brand-new iframe every time.
    */
+  demoSite.replaceChildren();
+
   const iframe = document.createElement('iframe');
 
+  iframe.className = 'example-frame';
+
   iframe.title = `${next.label} live website preview`;
-  iframe.loading = 'eager';
+
   iframe.setAttribute('scrolling', 'yes');
+
   iframe.setAttribute(
     'referrerpolicy',
     'strict-origin-when-cross-origin'
   );
 
   /*
-   * Give the iframe a temporary blank page first.
-   * This ensures the browser treats every example
-   * as a completely new navigation.
+   * Use eager loading because these are interactive
+   * portfolio examples rather than below-the-fold content.
    */
-  iframe.src = 'about:blank';
-
-  demoSite.appendChild(iframe);
+  iframe.loading = 'eager';
 
   /*
-   * Force the new URL onto the iframe on the next
-   * browser frame. This prevents rapid successive
-   * clicks from getting coalesced by the browser.
+   * Cache-bust the iframe URL.
+   *
+   * This is the important part if the browser is aggressively
+   * reusing a previous iframe navigation.
    */
-  requestAnimationFrame(() => {
-    /*
-     * If another example was clicked while waiting,
-     * don't load this obsolete example.
-     */
-    if (version !== renderVersion) return;
+  const separator = next.embedUrl.includes('?') ? '&' : '?';
 
-    iframe.src = next.embedUrl;
-  });
+  iframe.src =
+    `${next.embedUrl}${separator}preview=${Date.now()}`;
+
+  /*
+   * Add it only after all properties have been configured.
+   */
+  demoSite.appendChild(iframe);
 };
+
+/*
+ * =========================================================
+ * EXAMPLE BUTTONS
+ * =========================================================
+ */
+document.querySelectorAll('[data-example]').forEach((button) => {
+  button.addEventListener('click', () => {
+    setExample(button.dataset.example);
+  });
+});
+
+/*
+ * =========================================================
+ * PREVIOUS
+ * =========================================================
+ */
+document
+  .querySelector('[data-demo-prev]')
+  .addEventListener('click', () => {
+    const currentIndex = exampleOrder.indexOf(
+      exampleState.selected
+    );
+
+    const previousIndex =
+      (currentIndex - 1 + exampleOrder.length) %
+      exampleOrder.length;
+
+    setExample(exampleOrder[previousIndex]);
+  });
+
+/*
+ * =========================================================
+ * NEXT
+ * =========================================================
+ */
+document
+  .querySelector('[data-demo-next]')
+  .addEventListener('click', () => {
+    const currentIndex = exampleOrder.indexOf(
+      exampleState.selected
+    );
+
+    const nextIndex =
+      (currentIndex + 1) % exampleOrder.length;
+
+    setExample(exampleOrder[nextIndex]);
+  });
+
+/*
+ * Initial render
+ */
+renderExample(false);
 
 
 // Example selector buttons
