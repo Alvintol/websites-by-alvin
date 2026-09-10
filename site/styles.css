@@ -3626,35 +3626,68 @@ summary:focus-visible {
   color: #8b755f;
 }
 
+/* =========================================================
+   LIVE WEBSITE PREVIEWS
+   ========================================================= */
+
 .browser-site {
   position: relative;
+  width: 100%;
   height: 100%;
-  min-height: 540px;
+  min-height: 0;
   overflow: hidden;
 }
 
-.browser-site iframe {
+/*
+ * The iframe becomes its own scrollable browser window.
+ * The actual website remains completely live.
+ */
+.browser-site > iframe {
   display: block;
   width: 100%;
   height: 100%;
-  border: 0;
+  min-width: 100%;
+  min-height: 100%;
   margin: 0;
   padding: 0;
+  border: 0;
+  background: #fff;
 }
 
+/*
+ * Small hint that the preview is interactive.
+ * pointer-events:none means it never prevents
+ * scrolling/clicking inside the iframe.
+ */
 .browser-site::after {
   content: 'SCROLL TO EXPLORE ↓';
   position: absolute;
+  z-index: 20;
   right: 18px;
-  bottom: 16px;
-  z-index: 10;
+  bottom: 18px;
+
   padding: 7px 10px;
-  background: rgba(0, 0, 0, .65);
-  color: white;
+
+  color: #fff;
+  background: rgba(12, 20, 23, 0.72);
+
   font-size: 8px;
-  letter-spacing: .12em;
-  pointer-events: none;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0.12em;
+
   border-radius: 2px;
+
+  pointer-events: none;
+
+  opacity: 0.85;
+  transition: opacity 0.3s ease;
 }
 
-
+/*
+ * Hide the hint when the browser preview
+ * is being interacted with.
+ */
+.browser-site:hover::after {
+  opacity: 0.35;
+}

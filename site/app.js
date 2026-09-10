@@ -120,12 +120,15 @@ const renderExample = (key, animate = true) => {
 
   currentExample = exampleOrder.indexOf(key);
 
+  // Update the active example button
   document.querySelectorAll('[data-example]').forEach((item) => {
     const active = item.dataset.example === key;
+
     item.classList.toggle('is-active', active);
     item.setAttribute('aria-pressed', String(active));
   });
 
+  // Animate the browser preview when changing examples
   if (animate) {
     demoSite.animate(
       [
@@ -145,29 +148,47 @@ const renderExample = (key, animate = true) => {
     );
   }
 
+  // Update browser chrome
   demoUrl.textContent = next.url;
   demoStyle.textContent = next.style;
+
   demoCount.textContent =
     `${String(currentExample + 1).padStart(2, '0')} / ${String(exampleOrder.length).padStart(2, '0')}`;
 
+  // Update preview class
   demoSite.className = `browser-site ${next.className}`;
+
   demoSite.setAttribute(
     'aria-label',
-    `${next.label} starter website preview`
+    `${next.label} live website preview`
   );
 
-  demoSite.innerHTML = '';
+  // Remove previous iframe
+  demoSite.replaceChildren();
 
+  // Create live website iframe
   const iframe = document.createElement('iframe');
 
   iframe.src = next.embedUrl;
-  iframe.title = `${next.label} website preview`;
+  iframe.title = `${next.label} live website preview`;
+
+  // Let the iframe load only when needed
   iframe.loading = 'lazy';
+
+  // Explicitly allow the iframe to scroll
+  iframe.setAttribute('scrolling', 'yes');
+
+  // Don't sandbox this iframe.
+  // The live websites may rely on scripts, fonts, animations, etc.
+  iframe.setAttribute(
+    'referrerpolicy',
+    'strict-origin-when-cross-origin'
+  );
 
   demoSite.appendChild(iframe);
 };
 
-
+// Example selector buttons
 document
   .querySelectorAll('[data-example]')
   .forEach((button) => {
@@ -176,27 +197,29 @@ document
     });
   });
 
+// Previous example
 document
   .querySelector('[data-demo-prev]')
   .addEventListener('click', () => {
-    renderExample(
-      exampleOrder[
-      (currentExample - 1 + exampleOrder.length) % exampleOrder.length
-      ]
-    );
+    const previousIndex =
+      (currentExample - 1 + exampleOrder.length) % exampleOrder.length;
+
+    renderExample(exampleOrder[previousIndex]);
   });
 
+// Next example
 document
   .querySelector('[data-demo-next]')
   .addEventListener('click', () => {
-    renderExample(
-      exampleOrder[
-      (currentExample + 1) % exampleOrder.length
-      ]
-    );
+    const nextIndex =
+      (currentExample + 1) % exampleOrder.length;
+
+    renderExample(exampleOrder[nextIndex]);
   });
 
+// Initial example
 renderExample(exampleOrder[0], false);
+
 
 
 document.querySelectorAll('[data-example]').forEach((button) => button.addEventListener('click', () => renderExample(button.dataset.example)));
