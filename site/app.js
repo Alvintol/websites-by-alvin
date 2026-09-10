@@ -120,7 +120,7 @@ const exampleOrder = Object.keys(examples);
  * EXAMPLE STATE
  * =========================================================
  *
- * This is essentially the vanilla-JS equivalent of:
+ * This is our vanilla-JS equivalent of:
  *
  * const [selectedExample, setSelectedExample] = useState(...)
  *
@@ -130,28 +130,115 @@ const exampleState = {
 };
 
 /*
- * =========================================================
- * SET EXAMPLE
- * =========================================================
+ * Keep every iframe alive once it has been created.
  *
- * This is the equivalent of:
+ * Map:
+ * editorial  -> editorial iframe
+ * detailer   -> detailer iframe
+ * contractor -> contractor iframe
+ * groomer    -> groomer iframe
  *
- * setSelectedExample(key)
- *
- * Every click updates state first.
- * renderExample() then renders whatever is currently
- * in state.
+ * We don't destroy these when switching examples.
  */
-const setExample = (key) => {
-  if (!examples[key]) return;
+const exampleFrames = new Map();
 
-  exampleState.selected = key;
-  renderExample();
+/*
+ * =========================================================
+ * CREATE / GET IFRAME
+ * =========================================================
+ */
+const getExampleFrame = (key) => {
+  if (exampleFrames.has(key)) {
+    return exampleFrames.get(key);
+  }
+
+  const example = examples[key];
+
+  const iframe = document.createElement('iframe');
+
+  iframe.className = 'example-frame';
+  iframe.title = `${example.label} live website preview`;
+
+  iframe.setAttribute('scrolling', 'yes');
+
+  iframe.setAttribute(
+    'referrerpolicy',
+    'strict-origin-when-cross-origin'
+  );
+
+  iframe.loading = 'eager';
+
+  /*
+   * Important:
+   *
+   * Give every example its own iframe.
+   *
+   * The unique query parameter also prevents the browser
+   * from treating this as the same navigation as another
+   * previously loaded preview.
+   */
+  const separator = example.embedUrl.includes('?') ? '&' : '?';
+
+  iframe.src =
+    `${example.embedUrl}${separator}preview=${key}`;
+
+  /*
+   * All frames start hidden.
+   */
+  iframe.hidden = true;
+
+  /*
+   * Store the iframe before adding it to the page.
+   */
+  exampleFrames.set(key, iframe);
+
+  demoSite.appendChild(iframe);
+
+  return iframe;
 };
 
 /*
  * =========================================================
- * RENDER
+ * SHOW EXAMPLE
+ * =========================================================
+ */
+const showExample = (key) => {
+  /*
+   * Hide every existing iframe.
+   */
+  exampleFrames.forEach((iframe, frameKey) => {
+    iframe.hidden = frameKey !== key;
+  });
+
+  /*
+   * If this example hasn't been loaded yet,
+   * create its iframe.
+   */
+  const iframe = getExampleFrame(key);
+
+  /*
+   * Make absolutely sure the selected frame is visible.
+   */
+  iframe.hidden = false;
+
+  /*
+   * Bring it to the front.
+   */
+  iframe.style.zIndex = '2';
+
+  /*
+   * Put all other frames behind it.
+   */
+  exampleFrames.forEach((otherFrame, frameKey) => {
+    if (frameKey !== key) {
+      otherFrame.style.zIndex = '1';
+    }
+  });
+};
+
+/*
+ * =========================================================
+ * RENDER EXAMPLE
  * =========================================================
  */
 const renderExample = (animate = true) => {
@@ -161,7 +248,7 @@ const renderExample = (animate = true) => {
   const currentIndex = exampleOrder.indexOf(key);
 
   /*
-   * Update buttons
+   * Update selected buttons.
    */
   document.querySelectorAll('[data-example]').forEach((item) => {
     const active = item.dataset.example === key;
@@ -171,7 +258,7 @@ const renderExample = (animate = true) => {
   });
 
   /*
-   * Update browser information
+   * Update browser chrome.
    */
   demoUrl.textContent = next.url;
   demoStyle.textContent = next.style;
@@ -187,13 +274,13 @@ const renderExample = (animate = true) => {
   );
 
   /*
-   * Animate the browser frame.
+   * Animate the browser container.
    */
   if (animate) {
     demoSite.animate(
       [
         {
-          opacity: 0,
+          opacity: .35,
           transform: 'translateX(14px) scale(.985)'
         },
         {
@@ -209,51 +296,29 @@ const renderExample = (animate = true) => {
   }
 
   /*
-   * =======================================================
-   * IMPORTANT
-   * =======================================================
+   * Show the selected iframe.
    *
-   * Don't modify the existing iframe.
-   *
-   * Destroy the entire contents of the preview and create
-   * a brand-new iframe every time.
+   * Crucially, we DON'T destroy the iframe.
    */
-  demoSite.replaceChildren();
+  showExample(key);
+};
 
-  const iframe = document.createElement('iframe');
+/*
+ * =========================================================
+ * SET EXAMPLE
+ * =========================================================
+ *
+ * Equivalent to React's:
+ *
+ * setSelectedExample(key)
+ *
+ */
+const setExample = (key) => {
+  if (!examples[key]) return;
 
-  iframe.className = 'example-frame';
+  exampleState.selected = key;
 
-  iframe.title = `${next.label} live website preview`;
-
-  iframe.setAttribute('scrolling', 'yes');
-
-  iframe.setAttribute(
-    'referrerpolicy',
-    'strict-origin-when-cross-origin'
-  );
-
-  /*
-   * Use eager loading because these are interactive
-   * portfolio examples rather than below-the-fold content.
-   */
-  iframe.loading = 'eager';
-
-  /*
-   * Cache-bust the iframe URL.
-   *
-   * This is the important part if the browser is aggressively
-   * reusing a previous iframe navigation.
-   */
-  const separator = next.embedUrl.includes('?') ? '&' : '?';
-
-  iframe.src =
-    `${next.embedUrl}${separator}preview=${Date.now()}`;
-
-  /*
-   * Add it only after all properties have been configured.
-   */
-  demoSite.appendChild(iframe);
+  renderExample();
 };
 
 /*
@@ -305,44 +370,11 @@ document
   });
 
 /*
- * Initial render
+ * =========================================================
+ * INITIAL RENDER
+ * =========================================================
  */
 renderExample(false);
-
-
-// Example selector buttons
-document
-  .querySelectorAll('[data-example]')
-  .forEach((button) => {
-    button.addEventListener('click', () => {
-      renderExample(button.dataset.example);
-    });
-  });
-
-// Previous example
-document
-  .querySelector('[data-demo-prev]')
-  .addEventListener('click', () => {
-    const previousIndex =
-      (currentExample - 1 + exampleOrder.length) % exampleOrder.length;
-
-    renderExample(exampleOrder[previousIndex]);
-  });
-
-// Next example
-document
-  .querySelector('[data-demo-next]')
-  .addEventListener('click', () => {
-    const nextIndex =
-      (currentExample + 1) % exampleOrder.length;
-
-    renderExample(exampleOrder[nextIndex]);
-  });
-
-// Initial example
-renderExample(exampleOrder[0], false);
-
-
 
 document.querySelectorAll('[data-example]').forEach((button) => button.addEventListener('click', () => renderExample(button.dataset.example)));
 document.querySelector('[data-demo-prev]').addEventListener('click', () => renderExample(exampleOrder[(currentExample - 1 + exampleOrder.length) % exampleOrder.length]));
