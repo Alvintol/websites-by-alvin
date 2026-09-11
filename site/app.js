@@ -236,37 +236,17 @@ const renderExample = (key, animate = true) => {
 
   currentExample = nextIndex;
 
-
-  /*
-   * -------------------------------------------------------
-   * UPDATE ACTIVE BUTTON
-   * -------------------------------------------------------
-   */
-
+  // Update active example button
   document
     .querySelectorAll('[data-example]')
     .forEach((item) => {
-      const active =
-        item.dataset.example === key;
+      const active = item.dataset.example === key;
 
-      item.classList.toggle(
-        'is-active',
-        active
-      );
-
-      item.setAttribute(
-        'aria-pressed',
-        String(active)
-      );
+      item.classList.toggle('is-active', active);
+      item.setAttribute('aria-pressed', String(active));
     });
 
-
-  /*
-   * -------------------------------------------------------
-   * UPDATE BROWSER CHROME
-   * -------------------------------------------------------
-   */
-
+  // Update browser chrome
   if (demoUrl) {
     demoUrl.textContent = next.url;
   }
@@ -281,13 +261,7 @@ const renderExample = (key, animate = true) => {
       `${String(exampleOrder.length).padStart(2, '0')}`;
   }
 
-
-  /*
-   * -------------------------------------------------------
-   * UPDATE PREVIEW CLASS
-   * -------------------------------------------------------
-   */
-
+  // Update preview class
   demoSite.className =
     `browser-site ${next.className}`;
 
@@ -296,52 +270,66 @@ const renderExample = (key, animate = true) => {
     `${next.label} live website preview`
   );
 
-
   /*
-   * -------------------------------------------------------
-   * CHANGE THE LIVE WEBSITE
-   * -------------------------------------------------------
-   *
-   * Use the actual URL directly.
-   *
-   * No markup.
-   * No iframe destruction.
-   * No multiple iframes.
-   * No hidden elements.
+   * Fade the iframe out before changing the website.
    */
-
-  if (demoIframe.src !== next.embedUrl) {
-    demoIframe.src = next.embedUrl;
+  if (animate && !reduceMotion) {
+    demoIframe.classList.add('is-loading');
   }
 
+  /*
+   * Change the iframe only when the URL is different.
+   */
+  if (demoIframe.src !== next.embedUrl) {
+    demoIframe.src = next.embedUrl;
+  } else {
+    /*
+     * If we're already on this page, there is no iframe
+     * reload required, so fade it back in ourselves.
+     */
+    window.setTimeout(() => {
+      demoIframe.classList.remove('is-loading');
+    }, reduceMotion ? 0 : 300);
+  }
 
   /*
-   * -------------------------------------------------------
-   * ANIMATE
-   * -------------------------------------------------------
+   * Fade the new website in once it has finished loading.
    */
+  const handleLoad = () => {
+    demoIframe.classList.remove('is-loading');
 
-  if (animate) {
+    demoIframe.removeEventListener(
+      'load',
+      handleLoad
+    );
+  };
+
+  demoIframe.addEventListener(
+    'load',
+    handleLoad
+  );
+
+  /*
+   * Animate the surrounding browser frame as well.
+   */
+  if (animate && !reduceMotion) {
     demoSite.animate(
       [
         {
-          opacity: .18,
-          transform:
-            'translateX(14px) scale(.985)'
+          transform: 'translateX(8px) scale(.99)'
         },
         {
-          opacity: 1,
-          transform: 'none'
+          transform: 'translateX(0) scale(1)'
         }
       ],
       {
-        duration: reduceMotion ? 0 : 380,
-        easing:
-          'cubic-bezier(.2,.8,.2,1)'
+        duration: 380,
+        easing: 'cubic-bezier(.2,.8,.2,1)'
       }
     );
   }
 };
+
 
 
 /*
