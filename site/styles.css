@@ -2864,24 +2864,26 @@ summary:focus-visible {
 }
 @media (max-width: 640px) {
   .about-intro {
-    min-height: 44rem;
+    min-height: clamp(26rem, 72svh, 34rem);
     margin-inline: -1rem;
     padding: 0 1rem;
   }
+
   .about-sticky h2 {
     position: relative;
     top: auto;
     left: auto;
     width: 100%;
     padding-right: 1rem;
-    font-size: clamp(3rem, 13vw, 3.6rem);
+    font-size: clamp(2.75rem, 12vw, 3.6rem);
     line-height: 0.9;
   }
+
   .about-portrait {
     left: -0.5rem;
     bottom: 0;
-    width: min(20rem, 82vw);
-    max-height: 62%;
+    width: min(19rem, 78vw);
+    max-height: 70%;
     margin: 0;
   }
 }
