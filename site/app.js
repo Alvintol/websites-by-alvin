@@ -170,7 +170,6 @@ const examples = {
   }
 };
 
-
 const demoSite = document.querySelector('[data-demo-site]');
 const demoUrl = document.querySelector('[data-demo-url]');
 const demoStyle = document.querySelector('[data-demo-style]');
@@ -178,150 +177,46 @@ const demoCount = document.querySelector('[data-demo-count]');
 
 const exampleOrder = Object.keys(examples);
 
-
 /*
  * =========================================================
- * EXAMPLE STATE
+ * STATE
  * =========================================================
- *
- * This acts like React's:
- *
- * const [selectedExample, setSelectedExample] = useState(...)
- *
  */
 
-const exampleState = {
-  selected: exampleOrder[0]
-};
+let currentExample = 0;
 
 
 /*
  * =========================================================
- * PERSISTENT IFRAME STORE
+ * SINGLE LIVE IFRAME
  * =========================================================
  *
- * Each website gets its own iframe.
+ * There is only ever ONE iframe.
  *
- * Once an iframe is created, it stays alive.
- *
- * This prevents the browser from having to repeatedly
- * destroy/recreate the Editorial iframe when switching
- * quickly between examples.
+ * We change its src when the selected example changes.
  */
 
-const exampleFrames = new Map();
+const demoIframe = document.createElement('iframe');
 
+demoIframe.className = 'example-frame';
 
-/*
- * =========================================================
- * CREATE IFRAME
- * =========================================================
- */
+demoIframe.title = 'Live website preview';
 
-const createExampleFrame = (key) => {
-  const example = examples[key];
+demoIframe.setAttribute('scrolling', 'yes');
 
-  if (!example || !demoSite) return null;
+demoIframe.setAttribute(
+  'referrerpolicy',
+  'strict-origin-when-cross-origin'
+);
 
-  /*
-   * Don't create the same iframe twice.
-   */
-  if (exampleFrames.has(key)) {
-    return exampleFrames.get(key);
-  }
+demoIframe.loading = 'eager';
 
-  const iframe = document.createElement('iframe');
+demoIframe.style.width = '100%';
+demoIframe.style.height = '100%';
+demoIframe.style.border = '0';
+demoIframe.style.display = 'block';
 
-  iframe.className = 'example-frame';
-
-  iframe.title =
-    `${example.label} live website preview`;
-
-  /*
-   * The iframe itself is independently scrollable.
-   */
-  iframe.setAttribute('scrolling', 'yes');
-
-  /*
-   * Don't sandbox the live websites.
-   *
-   * They may require JavaScript, fonts, animations,
-   * navigation, etc.
-   */
-  iframe.setAttribute(
-    'referrerpolicy',
-    'strict-origin-when-cross-origin'
-  );
-
-  /*
-   * Load each example when its iframe is created.
-   *
-   * We intentionally do NOT use lazy loading here.
-   */
-  iframe.loading = 'eager';
-
-  /*
-   * Give each iframe its own unique URL.
-   *
-   * This is mostly useful for avoiding aggressive browser
-   * caching/navigation reuse.
-   */
-  const separator =
-    example.embedUrl.includes('?') ? '&' : '?';
-
-  iframe.src =
-    `${example.embedUrl}${separator}preview=${key}`;
-
-  /*
-   * Start hidden.
-   */
-  iframe.hidden = true;
-
-  /*
-   * Store the iframe.
-   */
-  exampleFrames.set(key, iframe);
-
-  /*
-   * Add it to the preview container.
-   */
-  demoSite.appendChild(iframe);
-
-  return iframe;
-};
-
-
-/*
- * =========================================================
- * SHOW SELECTED IFRAME
- * =========================================================
- */
-
-const showExampleFrame = (key) => {
-  /*
-   * Make sure the selected iframe exists.
-   */
-  const selectedFrame = createExampleFrame(key);
-
-  if (!selectedFrame) return;
-
-  /*
-   * Hide every other iframe.
-   */
-  exampleFrames.forEach((iframe, frameKey) => {
-    const isSelected = frameKey === key;
-
-    iframe.hidden = !isSelected;
-
-    iframe.style.zIndex = isSelected ? '2' : '1';
-  });
-
-  /*
-   * Explicitly show the selected iframe.
-   */
-  selectedFrame.hidden = false;
-  selectedFrame.style.zIndex = '2';
-};
+demoSite.appendChild(demoIframe);
 
 
 /*
@@ -330,21 +225,21 @@ const showExampleFrame = (key) => {
  * =========================================================
  */
 
-const renderExample = (animate = true) => {
-  if (!demoSite) return;
-
-  const key = exampleState.selected;
+const renderExample = (key, animate = true) => {
   const next = examples[key];
 
   if (!next) return;
 
-  const currentExample =
-    exampleOrder.indexOf(key);
+  const nextIndex = exampleOrder.indexOf(key);
+
+  if (nextIndex === -1) return;
+
+  currentExample = nextIndex;
 
 
   /*
    * -------------------------------------------------------
-   * UPDATE EXAMPLE BUTTONS
+   * UPDATE ACTIVE BUTTON
    * -------------------------------------------------------
    */
 
@@ -404,16 +299,25 @@ const renderExample = (animate = true) => {
 
   /*
    * -------------------------------------------------------
-   * SHOW THE CORRECT IFRAME
+   * CHANGE THE LIVE WEBSITE
    * -------------------------------------------------------
+   *
+   * Use the actual URL directly.
+   *
+   * No markup.
+   * No iframe destruction.
+   * No multiple iframes.
+   * No hidden elements.
    */
 
-  showExampleFrame(key);
+  if (demoIframe.src !== next.embedUrl) {
+    demoIframe.src = next.embedUrl;
+  }
 
 
   /*
    * -------------------------------------------------------
-   * ANIMATE THE PREVIEW
+   * ANIMATE
    * -------------------------------------------------------
    */
 
@@ -442,36 +346,7 @@ const renderExample = (animate = true) => {
 
 /*
  * =========================================================
- * SET EXAMPLE
- * =========================================================
- *
- * This is the equivalent of React:
- *
- * setSelectedExample(key)
- *
- */
-
-const setExample = (key) => {
-  /*
-   * Ignore invalid example keys.
-   */
-  if (!examples[key]) return;
-
-  /*
-   * Update the state FIRST.
-   */
-  exampleState.selected = key;
-
-  /*
-   * Then render from the state.
-   */
-  renderExample();
-};
-
-
-/*
- * =========================================================
- * EXAMPLE SELECTOR BUTTONS
+ * EXAMPLE BUTTONS
  * =========================================================
  */
 
@@ -479,14 +354,16 @@ document
   .querySelectorAll('[data-example]')
   .forEach((button) => {
     button.addEventListener('click', () => {
-      setExample(button.dataset.example);
+      renderExample(
+        button.dataset.example
+      );
     });
   });
 
 
 /*
  * =========================================================
- * PREVIOUS EXAMPLE
+ * PREVIOUS
  * =========================================================
  */
 
@@ -497,19 +374,14 @@ if (previousButton) {
   previousButton.addEventListener(
     'click',
     () => {
-      const currentIndex =
-        exampleOrder.indexOf(
-          exampleState.selected
-        );
-
       const previousIndex =
         (
-          currentIndex -
+          currentExample -
           1 +
           exampleOrder.length
         ) % exampleOrder.length;
 
-      setExample(
+      renderExample(
         exampleOrder[previousIndex]
       );
     }
@@ -519,7 +391,7 @@ if (previousButton) {
 
 /*
  * =========================================================
- * NEXT EXAMPLE
+ * NEXT
  * =========================================================
  */
 
@@ -530,36 +402,31 @@ if (nextButton) {
   nextButton.addEventListener(
     'click',
     () => {
-      const currentIndex =
-        exampleOrder.indexOf(
-          exampleState.selected
-        );
-
       const nextIndex =
         (
-          currentIndex + 1
+          currentExample +
+          1
         ) % exampleOrder.length;
 
-      setExample(
+      renderExample(
         exampleOrder[nextIndex]
       );
     }
   );
-}
+};
 
 
 /*
  * =========================================================
- * INITIAL EXAMPLE
+ * INITIAL RENDER
  * =========================================================
- *
- * This creates the Editorial iframe.
- *
- * The other three are created the first time the user
- * selects them.
  */
 
-renderExample(false);
+renderExample(
+  exampleOrder[0],
+  false
+);
+
 
 
 /* =========================================================
