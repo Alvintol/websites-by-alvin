@@ -1554,21 +1554,14 @@ h3 {
 }
 .process-list li {
   display: grid;
-  grid-template-columns: 3rem 1fr auto;
-  gap: 1.5rem;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: clamp(1.5rem, 3vw, 3rem);
   padding: 2.4rem 0;
   border-bottom: 2px solid var(--ink);
   align-items: start;
 }
-.process-list li > span {
-  width: 2rem;
-  height: 2rem;
-  display: grid;
-  place-items: center;
-  border: 1px solid var(--ink);
-  border-radius: 50%;
-  font-size: 0.75rem;
-  font-weight: 800;
+.process-list li > div {
+  min-width: 0;
 }
 .process-list h3 {
   font-size: 1.65rem;
@@ -1578,9 +1571,12 @@ h3 {
   max-width: 33rem;
 }
 .process-list b {
-  font-size: 0.7rem;
-  letter-spacing: 0.12em;
+  align-self: center;
+  font-size: clamp(0.95rem, 1vw, 1.15rem);
+  line-height: 1;
+  letter-spacing: 0.18em;
   writing-mode: vertical-rl;
+  text-orientation: mixed;
 }
 .faq-section {
   display: grid;
@@ -2154,11 +2150,13 @@ h3 {
     font-size: 4rem;
   }
   .process-list li {
-    grid-template-columns: 2rem 1fr;
-    gap: 1rem;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 1.25rem;
   }
   .process-list li b {
-    display: none;
+    display: block;
+    font-size: 0.82rem;
+    letter-spacing: 0.14em;
   }
   .faq-section {
     gap: 2rem;
@@ -2720,8 +2718,8 @@ summary:focus-visible {
 .process-list li {
   border-bottom-width: 1px;
 }
-.process-list li > span {
-  border-color: #52616980;
+.process-list li > div {
+  min-width: 0;
 }
 .process-list b {
   color: #5f554b;
