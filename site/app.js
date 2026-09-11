@@ -174,6 +174,8 @@ const demoSite = document.querySelector('[data-demo-site]');
 const demoUrl = document.querySelector('[data-demo-url]');
 const demoStyle = document.querySelector('[data-demo-style]');
 const demoCount = document.querySelector('[data-demo-count]');
+const demoLink = document.querySelector('[data-demo-link]');
+
 
 const exampleOrder = Object.keys(examples);
 
@@ -250,16 +252,21 @@ const renderExample = (key, animate = true) => {
   if (demoUrl) {
     demoUrl.textContent = next.url;
   }
-
+  
   if (demoStyle) {
     demoStyle.textContent = next.style;
   }
-
+  
   if (demoCount) {
     demoCount.textContent =
-      `${String(currentExample + 1).padStart(2, '0')} / ` +
-      `${String(exampleOrder.length).padStart(2, '0')}`;
+    `${String(currentExample + 1).padStart(2, '0')} / ` +
+    `${String(exampleOrder.length).padStart(2, '0')}`;
   }
+  
+    if (demoLink) {
+      demoLink.href = next.embedUrl;
+      demoLink.textContent = `View full site ↗`;
+    }
 
   // Update preview class
   demoSite.className =
