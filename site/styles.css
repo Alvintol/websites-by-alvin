@@ -2862,26 +2862,50 @@ summary:focus-visible {
     font-size: clamp(3.2rem, 6vw, 5.2rem);
   }
 }
+
 @media (max-width: 640px) {
+  .about-section {
+    display: block;
+    padding: 3.5rem 1rem 4rem;
+  }
+
+  .about-sticky {
+    position: relative;
+  }
+
   .about-intro {
-    min-height: 27rem;
+    position: relative;
+    min-height: 24rem;
+    margin: 1.5rem 0 0;
+    padding: 0;
   }
 
   .about-portrait {
-    left: -0.5rem;
+    position: absolute;
+    left: 0;
     bottom: 0;
     width: min(18rem, 72vw);
-    max-height: 76%;
+    height: auto;
+    max-height: none;
+    object-fit: contain;
+    object-position: left bottom;
   }
 
   .about-sticky h2 {
+    position: relative;
     top: auto;
     left: auto;
     width: 100%;
-    padding-left: 8rem;
-    padding-right: 0;
-    font-size: clamp(2.6rem, 11vw, 3.6rem);
+    margin: 1.5rem 0 1.25rem;
+    padding: 0;
+    font-size: clamp(2.75rem, 12vw, 4rem);
     line-height: 0.9;
+  }
+
+  .about-sticky .text-link {
+    position: relative;
+    display: inline-flex;
+    margin-top: 0;
   }
 }
 
