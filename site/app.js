@@ -137,7 +137,7 @@ if (
    ========================================================= */
 
 const examples = {
-  editorial: {
+  cleaner: {
     url: 'basiceditorial.createdbyalvin.com',
     embedUrl: 'https://basiceditorial.createdbyalvin.com/',
     style: 'Editorial',
