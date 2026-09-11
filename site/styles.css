@@ -1447,12 +1447,13 @@ h3 {
 }
 .about-section {
   display: grid;
-  grid-template-columns: 1.05fr 1fr;
-  gap: 4vw;
-  padding-left: 0;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 5vw;
+  padding: 4rem 4vw 5rem 0;
   overflow: hidden;
-  border-bottom: 2px solid var(--ink);
+  border-bottom: 1px solid var(--ink);
 }
+
 .about-sticky {
   align-self: start;
   position: sticky;
@@ -1467,17 +1468,18 @@ h3 {
 .about-intro {
   position: relative;
   flex: 1;
-  min-height: 38rem;
+  min-height: 34rem;
 }
 .about-sticky h2 {
   position: absolute;
   z-index: 2;
   top: 18%;
-  left: clamp(12rem, 18vw, 20rem);
-  width: min(31rem, calc(100% - 12rem));
-  font-size: clamp(3.4rem, 5vw, 6.6rem);
-  line-height: 0.86;
+  left: clamp(17rem, 21vw, 24rem);
+  width: min(31rem, 32vw);
+  font-size: clamp(3.2rem, 4.2vw, 5.2rem);
+  line-height: 0.9;
 }
+
 .about-sticky h2 span {
   color: var(--blue);
 }
@@ -1486,12 +1488,12 @@ h3 {
   z-index: 1;
   left: 0;
   bottom: 0;
-  width: clamp(18rem, 29vw, 33rem);
+  width: clamp(20rem, 32vw, 36rem);
   height: auto;
   max-height: 100%;
   object-fit: contain;
   object-position: left bottom;
-  filter: drop-shadow(0.35rem 0.5rem 0 #1714e824);
+  filter: drop-shadow(0.35rem 0.6rem 1.2rem #17262d24);
 }
 .about-sticky .text-link {
   position: relative;
@@ -2862,27 +2864,24 @@ summary:focus-visible {
 }
 @media (max-width: 640px) {
   .about-intro {
-    min-height: clamp(26rem, 72svh, 34rem);
-    margin-inline: -1rem;
-    padding: 0 1rem;
-  }
-
-  .about-sticky h2 {
-    position: relative;
-    top: auto;
-    left: auto;
-    width: 100%;
-    padding-right: 1rem;
-    font-size: clamp(2.75rem, 12vw, 3.6rem);
-    line-height: 0.9;
+    min-height: 27rem;
   }
 
   .about-portrait {
     left: -0.5rem;
     bottom: 0;
-    width: min(19rem, 78vw);
-    max-height: 70%;
-    margin: 0;
+    width: min(18rem, 72vw);
+    max-height: 76%;
+  }
+
+  .about-sticky h2 {
+    top: auto;
+    left: auto;
+    width: 100%;
+    padding-left: 8rem;
+    padding-right: 0;
+    font-size: clamp(2.6rem, 11vw, 3.6rem);
+    line-height: 0.9;
   }
 }
 
