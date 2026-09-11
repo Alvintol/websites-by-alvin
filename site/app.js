@@ -137,7 +137,7 @@ if (
    ========================================================= */
 
 const examples = {
-  cleaner: {
+  editorial: {
     url: 'basiceditorial.createdbyalvin.com',
     embedUrl: 'https://basiceditorial.createdbyalvin.com/',
     style: 'Editorial',
@@ -145,29 +145,46 @@ const examples = {
     className: 'template-editorial'
   },
 
-  detailer: {
+  electric: {
     url: 'basicelectricshowcase.createdbyalvin.com',
     embedUrl: 'https://basicelectricshowcase.createdbyalvin.com/',
     style: 'Electric showcase',
     label: 'Mobile detailing',
-    className: 'template-detailer'
+    className: 'template-electric'
   },
 
-  contractor: {
+  neon: {
     url: 'neonmodular.createdbyalvin.com',
     embedUrl: 'https://neonmodular.createdbyalvin.com/',
     style: 'Neon modular',
     label: 'Contracting',
-    className: 'template-contractor'
+    className: 'template-neon'
   },
 
-  groomer: {
+  atomospheric: {
     url: 'basicatmospheric.createdbyalvin.com',
     embedUrl: 'https://basicatmospheric.createdbyalvin.com/',
     style: 'Atmospheric retreat',
     label: 'Pet grooming',
-    className: 'template-groomer'
+    className: 'template-atmospheric'
+  },
+
+  catalog: {
+    url: 'basicproductcatalog.createdbyalvin.com',
+    embedUrl: 'https://basicproductcatalog.createdbyalvin.com/',
+    style: 'Product catalog',
+    label: 'Product catalog',
+    className: 'template-catalog'
+  },
+
+  premium: {
+    url: 'premiumshowcase.createdbyalvin.com',
+    embedUrl: 'https://premiumshowcase.createdbyalvin.com/',
+    style: 'Premium showcase',
+    label: 'Premium showcase',
+    className: 'template-premium'
   }
+
 };
 
 const demoSite = document.querySelector('[data-demo-site]');
