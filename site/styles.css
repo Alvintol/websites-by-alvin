@@ -2828,7 +2828,6 @@ summary:focus-visible {
   }
 }
 
-/* Keep the About headline beside the portrait instead of across it. */
 .about-section {
   grid-template-columns: 1.15fr 0.85fr;
   gap: 5vw;
