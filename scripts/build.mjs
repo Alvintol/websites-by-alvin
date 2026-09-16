@@ -5,7 +5,7 @@ const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const source = join(root, 'site');
 const stage = join(root, '.build-stage');
 const dist = join(root, 'dist');
-const requiredFiles = ['index.html', 'styles.css', 'app.js', 'favicon.png'];
+const requiredFiles = ['index.html', 'privacy.html', 'terms.html', 'styles.css', 'app.js', 'favicon.png'];
 for (const file of requiredFiles) if (!existsSync(join(source, file))) throw new Error(`Missing required site file: ${file}`);
 rmSync(stage, { recursive: true, force: true });
 mkdirSync(stage, { recursive: true });
