@@ -16,7 +16,9 @@ for (const match of html.matchAll(/\b(?:href|src)="([^"]+)"/g)) {
 }
 for (const tag of html.matchAll(/<a\b[^>]*target="_blank"[^>]*>/g)) if (!/rel="[^"]*noopener[^"]*noreferrer[^"]*"/.test(tag[0])) fail('External links require safe rel attributes.');
 if (!/<meta name="description" content="[^"]+">/.test(html)) fail('Missing page description.');
-if (!html.includes('<meta name="robots" content="noindex, nofollow">')) fail('Private draft must remain noindex.');
+if (/<meta name="robots"[^>]*noindex/.test(html)) fail('Public page must not be noindex.');
+if (/^Disallow: \/$/m.test(readFileSync(join(dist, 'robots.txt'), 'utf8'))) fail('robots.txt must not block the whole site.');
+if (!/<meta name="robots" content="noindex"/.test(readFileSync(join(dist, '404.html'), 'utf8'))) fail('404 page must be noindex.');
 if (html.includes('tel:')) fail('Draft should not publish an unconfirmed phone number.');
 if (!html.includes('mailto:inbox@createdbyalvin.com')) fail('Confirmed contact email is missing.');
 for (const match of html.matchAll(/mailto:([^?\"]+)/g)) if (match[1] !== 'inbox@createdbyalvin.com') fail(`Unexpected contact email: ${match[1]}`);
@@ -29,7 +31,7 @@ if (!html.includes('data-hero') || !app.includes('updateHeroDepth')) fail('Hero 
 const exampleKeys = [...html.matchAll(/data-example="([^"]+)"/g)].map((match) => match[1]);
 if (exampleKeys.length !== 5) fail('Expected five starting-point examples.');
 for (const key of exampleKeys) if (!app.includes(`  ${key}: {`)) fail(`Missing content state for example: ${key}`);
-for (const file of ['styles.css', 'app.js', 'favicon.png', '404.html', 'robots.txt', '_headers']) if (!existsSync(join(dist, file))) fail(`Missing output file: ${file}`);
+for (const file of ['styles.css', 'app.js', 'favicon.png', '404.html', 'robots.txt', 'sitemap.xml', '_headers']) if (!existsSync(join(dist, file))) fail(`Missing output file: ${file}`);
 const total = ['index.html', 'styles.css', 'app.js', 'favicon.png'].reduce((sum, file) => sum + statSync(join(dist, file)).size, 0);
 if (total > 300_000) fail('Core page exceeds the 300 KB budget.');
 console.log(`Passed: page structure, section links, hero depth assets, external-link safety, draft privacy, confirmed contact email, and size budget (${Math.round(total / 1024)} KiB).`);
